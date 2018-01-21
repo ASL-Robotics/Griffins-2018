@@ -1,12 +1,12 @@
-package org.usfirst.frc.team1884.util;
+package org.usfirst.frc.team1884.robot.util;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-public class XBox360 extends Joystick {
+public class XBox extends Joystick {
 
-	public XBox360(int port) {
+	public XBox(int port) {
 		super(port);
 	}
 
