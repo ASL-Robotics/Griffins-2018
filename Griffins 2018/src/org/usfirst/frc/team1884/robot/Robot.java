@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team1884.robot;
 
+import org.usfirst.frc.team1884.robot.subsystems.Climber;
+import org.usfirst.frc.team1884.robot.subsystems.Flipper;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -19,14 +22,19 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public class Robot extends TimedRobot {
 	public static OI m_oi;
-
+	public static Flipper flipper; 
+	public static Climber climber;
+	
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
+		flipper = new Flipper(); 
+		climber = new Climber();
 		m_oi = new OI();
+		
 	}
 
 	/**
