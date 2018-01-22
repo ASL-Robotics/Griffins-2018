@@ -9,6 +9,7 @@ package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.subsystems.Climber;
 import org.usfirst.frc.team1884.robot.subsystems.Flipper;
+import org.usfirst.frc.team1884.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 	public static Flipper flipper; 
 	public static Climber climber;
+	public static Intake intake; 
 	
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -33,6 +35,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		flipper = new Flipper(); 
 		climber = new Climber();
+		intake = new Intake(); 
 		m_oi = new OI();
 		
 	}
