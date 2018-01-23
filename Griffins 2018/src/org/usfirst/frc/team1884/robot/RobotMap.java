@@ -44,9 +44,14 @@ public class RobotMap {
 	//Drivetrain 
 	//declare + initialize Drivetrain motors 
 	public static Talon motor_frontL = new Talon (3); 
-	public static Talon motor_frontR = new Talon (3); 
-	public static Talon motor_backL = new Talon (3); 
-	public static Talon motor_backR = new Talon (3); 
+	public static Talon motor_frontR = new Talon (4); 
+	public static Talon motor_backL = new Talon (5); 
+	public static Talon motor_backR = new Talon (6); 
+	
+	
+	//Elevator
+	//Declare + initialize Elevator motor
+	public static Talon motor_elevator = new Talon (7); 
 	
 	//declare + initialize Drivetrain SpeedControllerGroups 
 	public static SpeedControllerGroup motors_left = new SpeedControllerGroup (motor_frontL, motor_backL);
