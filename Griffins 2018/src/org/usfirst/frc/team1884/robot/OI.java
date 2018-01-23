@@ -15,7 +15,7 @@ import org.usfirst.frc.team1884.robot.util.XBox;
  */
 public class OI {
 
-	public XBox driver, operator;
+	public static XBox driver, operator;
 	
 	public OI() {
 		

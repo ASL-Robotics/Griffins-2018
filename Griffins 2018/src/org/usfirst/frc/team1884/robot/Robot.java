@@ -8,6 +8,7 @@
 package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.subsystems.Climber;
+import org.usfirst.frc.team1884.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1884.robot.subsystems.Flipper;
 import org.usfirst.frc.team1884.robot.subsystems.Intake;
 
@@ -26,6 +27,7 @@ public class Robot extends TimedRobot {
 	public static Flipper flipper; 
 	public static Climber climber;
 	public static Intake intake; 
+	public static Drivetrain drivetrain; 
 	
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -37,6 +39,7 @@ public class Robot extends TimedRobot {
 		climber = new Climber();
 		intake = new Intake(); 
 		m_oi = new OI();
+		drivetrain = new Drivetrain(); 
 		
 	}
 
