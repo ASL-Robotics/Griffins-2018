@@ -7,11 +7,10 @@
 
 package org.usfirst.frc.team1884.robot;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -20,46 +19,56 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  * floating around.
  */
 public class RobotMap {
-	
-	//Flipper 
-	//declare + initialize Flipper solenoids 
-	public static DoubleSolenoid leftFlip = new DoubleSolenoid (0, 1); 
-	public static DoubleSolenoid rightFlip = new DoubleSolenoid (2, 3); 
-	
-	//Intake
-	//declare + initialize Intake motors 
-	public static VictorSP motors_intakeLeft = new VictorSP (0); 
-	public static VictorSP motors_intakeRight = new VictorSP (1); 
-	
-	//declare + initialize Intake solenoid
-	public static DoubleSolenoid intakePistons = new DoubleSolenoid (4, 5); 
-	
-	//Climber 
-	//declare + initialize Climber motor
-	public static VictorSP motors_climb = new VictorSP (2); 
-	
-	//declare + initialize Climber piston
-	public static DoubleSolenoid deployPiston = new DoubleSolenoid (6, 7); 
-	
-	//Drivetrain 
-	//declare + initialize Drivetrain motors 
-	public static Talon motor_frontL = new Talon (3); 
-	public static Talon motor_frontR = new Talon (4); 
-	public static Talon motor_backL = new Talon (5); 
-	public static Talon motor_backR = new Talon (6); 
-	
-	
-	//Elevator
-	//Declare + initialize Elevator motor
-	public static Talon motor_elevator = new Talon (7); 
-	
-	//declare + initialize Drivetrain SpeedControllerGroups 
-	public static SpeedControllerGroup motors_left = new SpeedControllerGroup (motor_frontL, motor_backL);
-	public static SpeedControllerGroup motors_right = new SpeedControllerGroup (motor_frontR, motor_backR);
-	
-	//declare + initialize Drivetrain DifferentialDrive 
-	public static DifferentialDrive motors_driveTrain = new DifferentialDrive (motors_left, motors_right); 
 
-	
-	
+	// Drivetrain
+	// declare Drivetrain motors
+	public static TalonSRX DRIVETRAIN_MOTOR_FL, DRIVETRAIN_MOTOR_BL, DRIVETRAIN_MOTOR_FR, DRIVETRAIN_MOTOR_BR;
+
+	// Intake
+	// declare Intake motors
+	public static VictorSP INTAKE_MOTOR_L, INTAKE_MOTOR_R;
+
+	// declare Intake solenoid
+	public static DoubleSolenoid INTAKE_PISTON;
+
+	// Elevator
+	// Declare + initialize Elevator motor
+	public static TalonSRX ELEVATOR_MOTOR;
+
+	public static DoubleSolenoid ELEVATOR_PISTON;
+
+	// Climber
+	// declare + initialize Climber motor
+	public static VictorSP CLIMBER_MOTOR;
+
+	// declare + initialize Climber piston
+	public static DoubleSolenoid CLIMBER_PISTON;
+
+	// Flipper
+	// declare + initialize Flipper solenoids
+	public static DoubleSolenoid FLIPPER_L, FLIPPER_R;
+
+	public static void init() {
+		// Initialize Drivetrain motors
+		DRIVETRAIN_MOTOR_FL = new TalonSRX(0);
+		DRIVETRAIN_MOTOR_BL = new TalonSRX(1);
+		DRIVETRAIN_MOTOR_FR = new TalonSRX(2);
+		DRIVETRAIN_MOTOR_BR = new TalonSRX(3);
+
+		INTAKE_MOTOR_L = new VictorSP(0);
+		INTAKE_MOTOR_R = new VictorSP(1);
+
+		INTAKE_PISTON = new DoubleSolenoid(0, 1);
+
+		ELEVATOR_MOTOR = new TalonSRX(4);
+
+		ELEVATOR_PISTON = new DoubleSolenoid(2, 3);
+
+		CLIMBER_MOTOR = new VictorSP(2);
+		CLIMBER_PISTON = new DoubleSolenoid(4, 5);
+
+		FLIPPER_L = new DoubleSolenoid(6, 7);
+		FLIPPER_R = new DoubleSolenoid(8, 9);
+	}
+
 }

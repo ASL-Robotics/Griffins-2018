@@ -15,6 +15,5 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void drive (double x, double z) {
-		RobotMap.motors_driveTrain.arcadeDrive(x, z); 
 	}
 }

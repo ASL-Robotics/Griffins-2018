@@ -16,27 +16,27 @@ public class Intake extends Subsystem {
     }
     
     public void intake () {
-    		RobotMap.motors_intakeLeft.set(1);
-    		RobotMap.motors_intakeRight.set(-1);
+    		RobotMap.INTAKE_MOTOR_L.set(1);
+    		RobotMap.INTAKE_MOTOR_R.set(-1);
     }
     
     public void toggleIntake () {
-		if (RobotMap.intakePistons.get() == DoubleSolenoid.Value.kReverse) {
-    		RobotMap.intakePistons.set(DoubleSolenoid.Value.kForward); 
+		if (RobotMap.INTAKE_PISTON.get() == DoubleSolenoid.Value.kReverse) {
+    		RobotMap.INTAKE_PISTON.set(DoubleSolenoid.Value.kForward); 
 		}
-		else if (RobotMap.intakePistons.get() == DoubleSolenoid.Value.kForward) {
-			RobotMap.intakePistons.set(DoubleSolenoid.Value.kReverse); 
+		else if (RobotMap.INTAKE_PISTON.get() == DoubleSolenoid.Value.kForward) {
+			RobotMap.INTAKE_PISTON.set(DoubleSolenoid.Value.kReverse); 
 		}
     }
     
     public void outtake () {
-		RobotMap.motors_intakeLeft.set(-1);
-		RobotMap.motors_intakeRight.set(1);
+		RobotMap.INTAKE_MOTOR_L.set(-1);
+		RobotMap.INTAKE_MOTOR_R.set(1);
     }
     
     public void off () {
-		RobotMap.motors_intakeLeft.stopMotor();
-		RobotMap.motors_intakeRight.stopMotor();
+		RobotMap.INTAKE_MOTOR_L.stopMotor();
+		RobotMap.INTAKE_MOTOR_R.stopMotor();
     }
     
 }

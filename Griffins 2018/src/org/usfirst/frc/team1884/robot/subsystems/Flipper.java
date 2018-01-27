@@ -29,11 +29,11 @@ public class Flipper extends Subsystem {
     }
     
     public void toggleRight () {
-  		if (RobotMap.rightFlip.get() == DoubleSolenoid.Value.kReverse) {
-  			RobotMap.rightFlip.set(DoubleSolenoid.Value.kForward); 
+  		if (RobotMap.FLIPPER_R.get() == DoubleSolenoid.Value.kReverse) {
+  			RobotMap.FLIPPER_R.set(DoubleSolenoid.Value.kForward); 
 		}
-		else if (RobotMap.rightFlip.get() == DoubleSolenoid.Value.kForward) {
-			RobotMap.rightFlip.set(DoubleSolenoid.Value.kReverse); 
+		else if (RobotMap.FLIPPER_R.get() == DoubleSolenoid.Value.kForward) {
+			RobotMap.FLIPPER_R.set(DoubleSolenoid.Value.kReverse); 
 		}
     }
 }
