@@ -15,15 +15,15 @@ public class Climber extends Subsystem {
     }
     
     public void deploy () {
-    		RobotMap.deployPiston.set(DoubleSolenoid.Value.kForward); 
+    		RobotMap.CLIMBER_PISTON.set(DoubleSolenoid.Value.kForward); 
     }
     
     public void climb () {
-    		RobotMap.motors_climb.set(1); 
+    		RobotMap.CLIMBER_MOTOR.set(1); 
     }
     
     public void stopClimb () {
-    		RobotMap.motors_climb.stopMotor(); 
+    		RobotMap.CLIMBER_MOTOR.stopMotor(); 
     }
 }
 

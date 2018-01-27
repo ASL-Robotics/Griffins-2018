@@ -43,9 +43,7 @@ public class Robot extends TimedRobot {
 		intake = new Intake(); 
 		elevator = new Elevator();
 		flipper = new Flipper(); 
-		climber = new Climber();
-
-		
+		climber = new Climber(); 
 	}
 
 	/**
