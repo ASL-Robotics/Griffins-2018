@@ -38,12 +38,12 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		m_oi = new OI();
 		drivetrain = new Drivetrain(); 
 		intake = new Intake(); 
 		elevator = new Elevator();
 		flipper = new Flipper(); 
 		climber = new Climber(); 
+		m_oi = new OI();
 	}
 
 	/**
