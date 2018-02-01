@@ -29,6 +29,8 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void drive(double x, double z) {
+		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, x+z);
+		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, x-z);
 	}
 
 	/**
@@ -107,8 +109,6 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
 	}
 
-	private enum MotionProfiles
-	{
-
+	private enum MotionProfiles {
 	}
 }

@@ -31,8 +31,8 @@ public class OI {
 		operator = new XBox(1);
 		
 		//intake commands
-		operator.getYButton().whenPressed(new IntakeCommand());
-		operator.getAButton().whenPressed(new OuttakeCommand());
+		operator.getYButton().whileHeld(new IntakeCommand());
+		operator.getAButton().whileHeld(new OuttakeCommand());
 		operator.getRightStick().whenPressed(new IntakePistonsCommand());
 		
 		//climb commands 

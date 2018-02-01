@@ -27,7 +27,7 @@ public class RobotMap {
 
 	// Intake
 	// declare Intake motors
-	public static VictorSP INTAKE_MOTOR_L, INTAKE_MOTOR_R;
+	public static VictorSP INTAKE_MOTOR_L1, INTAKE_MOTOR_R1, INTAKE_MOTOR_L2, INTAKE_MOTOR_R2;
 
 	// declare Intake solenoid
 	public static DoubleSolenoid INTAKE_PISTON;
@@ -59,8 +59,10 @@ public class RobotMap {
 		DRIVETRAIN_MOTOR_BR = new TalonSRX(3);
 		DRIVETRAIN_MOTOR_BR.follow(DRIVETRAIN_MOTOR_FR);
 
-		INTAKE_MOTOR_L = new VictorSP(0);
-		INTAKE_MOTOR_R = new VictorSP(1);
+		INTAKE_MOTOR_L1 = new VictorSP(0);
+		INTAKE_MOTOR_R1 = new VictorSP(1);
+		INTAKE_MOTOR_L2 = new VictorSP(2);
+		INTAKE_MOTOR_R2 = new VictorSP(3);
 
 		INTAKE_PISTON = new DoubleSolenoid(0, 1);
 
@@ -68,11 +70,11 @@ public class RobotMap {
 
 		ELEVATOR_PISTON = new DoubleSolenoid(2, 3);
 
-		CLIMBER_MOTOR = new VictorSP(2);
+		//CLIMBER_MOTOR = new VictorSP(2);
 		CLIMBER_PISTON = new DoubleSolenoid(4, 5);
 
 		FLIPPER_L = new DoubleSolenoid(6, 7);
-		FLIPPER_R = new DoubleSolenoid(8, 9);
+		//FLIPPER_R = new DoubleSolenoid(8, 9);
 	}
 
 }
