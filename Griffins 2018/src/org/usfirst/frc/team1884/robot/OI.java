@@ -26,14 +26,14 @@ public class OI {
 	
 	public OI() {
 		
-		driver = new XBox(0);
+		driver = new XBox(1);
 		
-		operator = new XBox(1);
+		operator = new XBox(0);
 		
 		//intake commands
 		operator.getYButton().whileHeld(new IntakeCommand());
 		operator.getAButton().whileHeld(new OuttakeCommand());
-		operator.getRightStick().whenPressed(new IntakePistonsCommand());
+		operator.getLeftStick().whenPressed(new IntakePistonsCommand());
 		
 		//climb commands 
 		operator.getNorth().whileHeld(new ClimbCommand());
@@ -45,6 +45,5 @@ public class OI {
 		
 		//elevator commands 
 		//TODO
-		
 	}	
 }

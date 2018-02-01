@@ -39,10 +39,10 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		RobotMap.init();
 		drivetrain = new Drivetrain(); 
-		intake = new Intake(); 
 		elevator = new Elevator();
 		flipper = new Flipper(); 
 		climber = new Climber(); 
+		intake = new Intake(); 
 		m_oi = new OI();
 	}
 
