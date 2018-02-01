@@ -101,9 +101,14 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FL.processMotionProfileBuffer();
 		RobotMap.DRIVETRAIN_MOTOR_FR.processMotionProfileBuffer();
 	}
-	
+
 	public static void enableMotionProfile() {
-		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile,SetValueMotionProfile.Enable.value);
-		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile,SetValueMotionProfile.Enable.value);
+		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
+		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
+	}
+
+	private enum MotionProfiles
+	{
+
 	}
 }
