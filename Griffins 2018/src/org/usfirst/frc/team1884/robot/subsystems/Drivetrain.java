@@ -20,12 +20,7 @@ public class Drivetrain extends Subsystem {
 	private MotionProfileStatus mpStatus;
 
 	public Drivetrain() {
-<<<<<<< HEAD
 		mpStatus = new MotionProfileStatus();
-=======
-	mpStatus = new MotionProfileStatus();
-	
->>>>>>> 275a8181815fa06efbd082d6b0fba64556ef2c22
 	}
 
 	public void initDefaultCommand() {
@@ -33,9 +28,10 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void drive(double x, double z) {
-<<<<<<< HEAD
-		if (x <= 0.05 && x >= -0.05) x = 0;
-		if (z <= 0.05 && z >= -0.05) z = 0;
+		if (x <= 0.05 && x >= -0.05)
+			x = 0;
+		if (z <= 0.05 && z >= -0.05)
+			z = 0;
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, x-z);
 		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, x+z);
 	}
@@ -53,8 +49,7 @@ public class Drivetrain extends Subsystem {
 		td = td.valueOf(durationMs);
 
 		if (td.value != durationMs) {
-			DriverStation.reportError(
-					"Trajectory Duration not supported - use configMotionProfileTrajectoryPeriod instead", false);
+			DriverStation.reportError("Trajectory Duration not supported - use configMotionProfileTrajectoryPeriod instead", false);
 		}
 		return td;
 	}
@@ -67,59 +62,12 @@ public class Drivetrain extends Subsystem {
 			RobotMap.DRIVETRAIN_MOTOR_FL.clearMotionProfileHasUnderrun(0);
 			RobotMap.DRIVETRAIN_MOTOR_FR.clearMotionProfileHasUnderrun(0);
 		}
-		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, x+z);
-		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, x-z);
-=======
-		if (x <= 0.05)
-			x = 0;
-		if (z <= 0.05)
-			z = 0;
-		if (x <= 0.05 && x >= -0.05) {
-			x = 0;
-			RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, x + z);
-			RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, x - z);
-		}
->>>>>>> 275a8181815fa06efbd082d6b0fba64556ef2c22
-	}
-
-	/**
-	 * Find enum value if supported.
-	 * 
-	 * @param durationMs
-	 * @return enum equivalent of durationMs
-	 */
-	private TrajectoryDuration GetTrajectoryDuration1(int durationMs) {
-
-		TrajectoryDuration td = TrajectoryDuration.Trajectory_Duration_0ms;
-
-		td = td.valueOf(durationMs);
-
-		if (td.value != durationMs) {
-			DriverStation.reportError(
-					"Trajectory Duration not supported - use configMotionProfileTrajectoryPeriod instead", false);
-		}
-		return td;
-	}
-<<<<<<< HEAD
-	public void initializeMotionProfile(double[][] leftProfile, double[][] rightProfile) {
-=======
-
-	public void initializeMotionProfile1(double[][] leftProfile, double[][] rightProfile) {
->>>>>>> 275a8181815fa06efbd082d6b0fba64556ef2c22
-		TrajectoryPoint tpLeft = new TrajectoryPoint();
-		TrajectoryPoint tpRight = new TrajectoryPoint();
-
-		if (mpStatus.hasUnderrun) {
-			RobotMap.DRIVETRAIN_MOTOR_FL.clearMotionProfileHasUnderrun(0);
-			RobotMap.DRIVETRAIN_MOTOR_FR.clearMotionProfileHasUnderrun(0);
-		}
-<<<<<<< HEAD
 
 		RobotMap.DRIVETRAIN_MOTOR_FL.clearMotionProfileTrajectories();
 		RobotMap.DRIVETRAIN_MOTOR_FR.clearMotionProfileTrajectories();
 
-		RobotMap.DRIVETRAIN_MOTOR_FL).configMotionProfileTrajectoryPeriod(0, 10);
-		RobotMap.DRIVETRAIN_MOTOR_FR).configMotionProfileTrajectoryPeriod(0, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FL.configMotionProfileTrajectoryPeriod(0, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FR.configMotionProfileTrajectoryPeriod(0, 10);
 
 		for (int i = 0; i < leftProfile.length; i++) {
 			tpLeft.position = leftProfile[i][0];
@@ -128,8 +76,8 @@ public class Drivetrain extends Subsystem {
 			tpLeft.velocity = leftProfile[i][1];
 			tpRight.velocity = rightProfile[i][2];
 
-			tpLeft.profileSlotSelect = 0;
-			tpRight.profileSlotSelect = 0;
+			tpLeft.profileSlotSelect0 = 0;
+			tpRight.profileSlotSelect0 = 0;
 
 			tpLeft.timeDur = GetTrajectoryDuration1((int) leftProfile[i][2]);
 			tpRight.timeDur = GetTrajectoryDuration1((int) rightProfile[i][2]);
@@ -149,97 +97,12 @@ public class Drivetrain extends Subsystem {
 				tpLeft.isLastPoint = true;
 				tpRight.isLastPoint = true;
 			}
-
 			RobotMap.DRIVETRAIN_MOTOR_FL.pushMotionProfileTrajectory(tpLeft);
 			RobotMap.DRIVETRAIN_MOTOR_FR.pushMotionProfileTrajectory(tpRight);
 		}
 
 		RobotMap.DRIVETRAIN_MOTOR_FL.processMotionProfileBuffer();
 		RobotMap.DRIVETRAIN_MOTOR_FR.processMotionProfileBuffer();
-	}
-	
-=======
-	}
-
-	// /**
-	// * Find enum value if supported.
-	// *
-	// * @param durationMs
-	// * @return enum equivalent of durationMs
-	// */
-	private TrajectoryDuration GetTrajectoryDuration(int durationMs) {
-	
-	 TrajectoryDuration td = TrajectoryDuration.Trajectory_Duration_0ms;
-	
-	 td = td.valueOf(durationMs);
-	
-	if (td.value != durationMs) {
-	DriverStation.reportError("Trajectory Duration not supported - useconfigMotionProfileTrajectoryPeriod instead", false);
-	}
-	return td;
-	}
-
-	public void initializeMotionProfile(double[][] leftProfile, double[][] rightProfile) {
-	TrajectoryPoint tpLeft = new TrajectoryPoint();
-	TrajectoryPoint tpRight = new TrajectoryPoint();
-	
-	 if (mpStatus.hasUnderrun) {
-	 RobotMap.DRIVETRAIN_MOTOR_FL.clearMotionProfileHasUnderrun(0);
-	 RobotMap.DRIVETRAIN_MOTOR_FR.clearMotionProfileHasUnderrun(0);
- }
-	
-	 RobotMap.DRIVETRAIN_MOTOR_FL.clearMotionProfileTrajectories();
-	 RobotMap.DRIVETRAIN_MOTOR_FR.clearMotionProfileTrajectories();
-
-	 RobotMap.DRIVETRAIN_MOTOR_FL.configMotionProfileTrajectoryPeriod(0, 10);
-	 RobotMap.DRIVETRAIN_MOTOR_FR.configMotionProfileTrajectoryPeriod(0, 10);
-
-	 for (int i = 0; i < leftProfile.length; i++) {
-	 tpLeft.position = leftProfile[i][0];
-	 tpRight.position = rightProfile[i][0];
-	
-	 tpLeft.velocity = leftProfile[i][1];
-	 tpRight.velocity = rightProfile[i][2];
-	
-	 tpLeft.profileSlotSelect0 = 0;
-	 tpRight.profileSlotSelect0 = 0;
-
-	 tpLeft.timeDur = GetTrajectoryDuration1((int) leftProfile[i][2]);
-	 tpRight.timeDur = GetTrajectoryDuration1((int) rightProfile[i][2]);
-
-	 if (i != 0) {
-	 tpLeft.zeroPos = false;
-	 tpRight.zeroPos = false;
-	 } else {
-	 tpLeft.zeroPos = true;
-	 tpRight.zeroPos = true;
-	 }
-
-	 if (i + 1 != leftProfile.length) {
-	 tpLeft.isLastPoint = false;
-	 tpRight.isLastPoint = false;
-	 } else {
-	 tpLeft.isLastPoint = true;
-	 tpRight.isLastPoint = true;
-	 }
- RobotMap.DRIVETRAIN_MOTOR_FL.pushMotionProfileTrajectory(tpLeft);
-	 RobotMap.DRIVETRAIN_MOTOR_FR.pushMotionProfileTrajectory(tpRight);
-	 }
-	
-	 RobotMap.DRIVETRAIN_MOTOR_FL.processMotionProfileBuffer();
-	 RobotMap.DRIVETRAIN_MOTOR_FR.processMotionProfileBuffer();
-	 }
-
-	
-	 public static void enableMotionProfile1() {
-	 RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile,SetValueMotionProfile.Enable.value);
-	 RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile,SetValueMotionProfile.Enable.value);
-	 }
-
->>>>>>> 275a8181815fa06efbd082d6b0fba64556ef2c22
-	public static void enableMotionProfile() {
-		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile,SetValueMotionProfile.Enable.value);
-		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile,SetValueMotionProfile.Enable.value);
 	}
 
 	public static void enableMotionProfile1() {
@@ -248,6 +111,6 @@ public class Drivetrain extends Subsystem {
 	}
 
 	private enum MotionProfiles {
-		
+
 	}
 }
