@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class FlipperCommandRight extends Command {
+public class FlipperLeftCommand extends Command {
 
-    public FlipperCommandRight() {
+    public FlipperLeftCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-		requires(Robot.flipper); 
+    		requires(Robot.flipper); 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    		Robot.flipper.toggleRight(); 
+    		Robot.flipper.toggleLeft(); 
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -1,23 +1,24 @@
 package org.usfirst.frc.team1884.robot.commands;
 
 import org.usfirst.frc.team1884.robot.Robot;
+import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class IntakeCommand extends Command {
+public class ElevatorTopCommand extends Command {
 
-	public IntakeCommand() {
+	public ElevatorTopCommand() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.intake);
+		requires(Robot.elevator);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.intake.intake();
+		Robot.elevator.setHeight(Elevator.Height.HIGH);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -31,12 +32,10 @@ public class IntakeCommand extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.intake.off();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		end();
 	}
 }

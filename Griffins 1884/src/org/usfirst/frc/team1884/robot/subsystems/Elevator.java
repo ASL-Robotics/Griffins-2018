@@ -9,29 +9,24 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-	
+
 	public void initDefaultCommand() {
-		//TODO
+		// TODO
 	}
-	
-	public void climbHeight1(){
-		//TODO
+
+	public void setHeight(Height h) {
+
 	}
-	
-	public void climbHeight2(){
-		//TODO
-	}
-	
-	public void descend(){
-		//TODO
-	}
-	
-	public void toggleClaw () {
+
+	public void toggleClaw() {
 		if (RobotMap.ELEVATOR_PISTON.get() == DoubleSolenoid.Value.kReverse) {
-    		RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kForward); 
+			RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kForward);
+		} else {
+			RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kReverse);
 		}
-		else {
-			RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kReverse); 
-		}
+	}
+
+	public enum Height {
+		LOW, MIDDLE, HIGH;
 	}
 }

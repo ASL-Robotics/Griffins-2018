@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ElevatorCommandDescend extends Command {
+public class ElevatorClawCommand extends Command {
 
-    public ElevatorCommandDescend() {
+    public ElevatorClawCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
+    		requires(Robot.elevator); 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.descend();
+    		Robot.elevator.toggleClaw(); 
     }
 
     // Called repeatedly when this Command is scheduled to run

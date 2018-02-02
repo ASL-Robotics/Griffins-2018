@@ -7,13 +7,13 @@
 
 package org.usfirst.frc.team1884.robot;
 
-import org.usfirst.frc.team1884.robot.commands.ClimbCommand;
-import org.usfirst.frc.team1884.robot.commands.ClimberDeploy;
-import org.usfirst.frc.team1884.robot.commands.FlipperCommandLeft;
-import org.usfirst.frc.team1884.robot.commands.FlipperCommandRight;
-import org.usfirst.frc.team1884.robot.commands.IntakeCommand;
-import org.usfirst.frc.team1884.robot.commands.IntakePistonsCommand;
-import org.usfirst.frc.team1884.robot.commands.OuttakeCommand;
+import org.usfirst.frc.team1884.robot.commands.ClimberClimbCommand;
+import org.usfirst.frc.team1884.robot.commands.ClimberDeployCommand;
+import org.usfirst.frc.team1884.robot.commands.FlipperLeftCommand;
+import org.usfirst.frc.team1884.robot.commands.FlipperRightCommand;
+import org.usfirst.frc.team1884.robot.commands.IntakeInCommand;
+import org.usfirst.frc.team1884.robot.commands.IntakePistonCommand;
+import org.usfirst.frc.team1884.robot.commands.IntakeOutCommand;
 import org.usfirst.frc.team1884.robot.util.XBox;
 
 /**
@@ -26,22 +26,22 @@ public class OI {
 	
 	public OI() {
 		
-		driver = new XBox(1);
+		driver = new XBox(0);
 		
-		operator = new XBox(0);
+		operator = new XBox(1);
 		
 		//intake commands
-		operator.getYButton().whileHeld(new IntakeCommand());
-		operator.getAButton().whileHeld(new OuttakeCommand());
-		operator.getLeftStick().whenPressed(new IntakePistonsCommand());
+		operator.getYButton().whileHeld(new IntakeInCommand());
+		operator.getAButton().whileHeld(new IntakeOutCommand());
+		operator.getLeftStick().whenPressed(new IntakePistonCommand());
 		
 		//climb commands 
-		operator.getNorth().whileHeld(new ClimbCommand());
-		operator.getLeftStick().whenPressed(new ClimberDeploy()); 
+		operator.getNorth().whileHeld(new ClimberClimbCommand());
+		operator.getLeftStick().whenPressed(new ClimberDeployCommand()); 
 		
 		//flipper commands 
-		operator.getLeftBumper().whenPressed(new FlipperCommandLeft()); 
-		operator.getRightBumper().whenPressed(new FlipperCommandRight()); 
+		operator.getLeftBumper().whenPressed(new FlipperLeftCommand()); 
+		operator.getRightBumper().whenPressed(new FlipperRightCommand()); 
 		
 		//elevator commands 
 		//TODO

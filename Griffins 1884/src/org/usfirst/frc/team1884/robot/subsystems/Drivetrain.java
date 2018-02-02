@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
 import org.usfirst.frc.team1884.robot.RobotMap;
-import org.usfirst.frc.team1884.robot.commands.DrivetrainCommand;
+import org.usfirst.frc.team1884.robot.commands.DrivetrainDriveCommand;
 
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
@@ -24,7 +24,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new DrivetrainCommand());
+		setDefaultCommand(new DrivetrainDriveCommand());
 	}
 
 	public void drive(double x, double z) {
