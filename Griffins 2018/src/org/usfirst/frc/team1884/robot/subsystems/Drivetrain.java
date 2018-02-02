@@ -27,10 +27,10 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void drive(double x, double z) {
-		if(x <= 0.05) {
+		if(x <= 0.05 && x >= -0.05) {
 			x = 0;
 		}
-		if(z <= 0.05) {
+		if(z <= 0.05 && z >= -0.05) {
 			z = 0; 
 		}
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, x+z);
