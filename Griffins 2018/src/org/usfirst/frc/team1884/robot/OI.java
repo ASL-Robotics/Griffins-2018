@@ -33,7 +33,7 @@ public class OI {
 		//intake commands
 		operator.getYButton().whileHeld(new IntakeCommand());
 		operator.getAButton().whileHeld(new OuttakeCommand());
-		operator.getRightStick().whenPressed(new IntakePistonsCommand());
+		operator.getLeftStick().whenPressed(new IntakePistonsCommand());
 		
 		//climb commands 
 		operator.getNorth().whileHeld(new ClimbCommand());
@@ -45,6 +45,5 @@ public class OI {
 		
 		//elevator commands 
 		//TODO
-		
 	}	
 }
