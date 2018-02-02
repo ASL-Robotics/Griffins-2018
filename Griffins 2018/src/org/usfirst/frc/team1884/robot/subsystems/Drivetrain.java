@@ -27,8 +27,41 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void drive(double x, double z) {
+<<<<<<< HEAD
 		if(x <= 0.05 && x >= -0.05) {
 			x = 0;
+=======
+		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, x+z);
+		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, x-z);
+	}
+
+	/**
+	 * Find enum value if supported.
+	 * 
+	 * @param durationMs
+	 * @return enum equivalent of durationMs
+	 */
+	private TrajectoryDuration GetTrajectoryDuration(int durationMs) {
+
+		TrajectoryDuration td = TrajectoryDuration.Trajectory_Duration_0ms;
+
+		td = td.valueOf(durationMs);
+
+		if (td.value != durationMs) {
+			DriverStation.reportError(
+					"Trajectory Duration not supported - use configMotionProfileTrajectoryPeriod instead", false);
+		}
+		return td;
+	}
+
+	public void initializeMotionProfile(double[][] leftProfile, double[][] rightProfile) {
+		TrajectoryPoint tpLeft = new TrajectoryPoint();
+		TrajectoryPoint tpRight = new TrajectoryPoint();
+
+		if (mpStatus.hasUnderrun) {
+			RobotMap.DRIVETRAIN_MOTOR_FL.clearMotionProfileHasUnderrun(0);
+			RobotMap.DRIVETRAIN_MOTOR_FR.clearMotionProfileHasUnderrun(0);
+>>>>>>> 2854e138d30e69021950b2256adc7d3b3a516606
 		}
 		if(z <= 0.05 && z >= -0.05) {
 			z = 0; 
@@ -36,6 +69,7 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, x+z);
 		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, x-z);
 	}
+<<<<<<< HEAD
 //
 //	/**
 //	 * Find enum value if supported.
@@ -117,4 +151,14 @@ public class Drivetrain extends Subsystem {
 //		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile,SetValueMotionProfile.Enable.value);
 //>>>>>>> d00ec06e5386f0e32f7199f67332b4fa5e022354
 	//}
+=======
+
+	public static void enableMotionProfile() {
+		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
+		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
+	}
+
+	private enum MotionProfiles {
+	}
+>>>>>>> 2854e138d30e69021950b2256adc7d3b3a516606
 }
