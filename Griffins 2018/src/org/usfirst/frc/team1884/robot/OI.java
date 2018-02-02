@@ -26,9 +26,9 @@ public class OI {
 	
 	public OI() {
 		
-		driver = new XBox(0);
+		driver = new XBox(1);
 		
-		operator = new XBox(1);
+		operator = new XBox(0);
 		
 		//intake commands
 		operator.getYButton().whileHeld(new IntakeCommand());

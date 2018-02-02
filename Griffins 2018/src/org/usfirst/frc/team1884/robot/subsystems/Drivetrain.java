@@ -7,6 +7,7 @@ import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motion.TrajectoryPoint;
 import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
+//import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -29,17 +30,19 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void drive(double x, double z) {
+		if(x<=0.05)x=0;
+		if(z<=0.05)z=0; 
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, x+z);
 		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, x-z);
+		
 	}
-
 	/**
 	 * Find enum value if supported.
 	 * 
 	 * @param durationMs
 	 * @return enum equivalent of durationMs
 	 */
-	private TrajectoryDuration GetTrajectoryDuration(int durationMs) {
+private TrajectoryDuration GetTrajectoryDuration(int durationMs) {
 
 		TrajectoryDuration td = TrajectoryDuration.Trajectory_Duration_0ms;
 
