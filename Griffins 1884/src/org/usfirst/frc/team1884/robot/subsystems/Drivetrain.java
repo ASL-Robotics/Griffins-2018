@@ -17,10 +17,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 
-	private MotionProfileStatus mpStatus;
+	private MotionProfileStatus mpStatusLeft, mpStatusRight;
 
 	public Drivetrain() {
-		mpStatus = new MotionProfileStatus();
+		mpStatusLeft = new MotionProfileStatus();
+		mpStatusRight = new MotionProfileStatus();
 	}
 
 	public void initDefaultCommand() {
@@ -65,8 +66,10 @@ public class Drivetrain extends Subsystem {
 		TrajectoryPoint tpLeft = new TrajectoryPoint();
 		TrajectoryPoint tpRight = new TrajectoryPoint();
 
-		if (mpStatus.hasUnderrun) {
+		if (mpStatusLeft.hasUnderrun) {
 			RobotMap.DRIVETRAIN_MOTOR_FL.clearMotionProfileHasUnderrun(0);
+		}
+		if (mpStatusRight.hasUnderrun) {
 			RobotMap.DRIVETRAIN_MOTOR_FR.clearMotionProfileHasUnderrun(0);
 		}
 
@@ -112,9 +115,20 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FR.processMotionProfileBuffer();
 	}
 
-	public static void enableMotionProfile1() {
+	public void enableMotionProfile() {
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
 		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
+	}
+
+	public boolean motionProfileIsDone() {
+		RobotMap.DRIVETRAIN_MOTOR_FL.getMotionProfileStatus(mpStatusLeft);
+		RobotMap.DRIVETRAIN_MOTOR_FR.getMotionProfileStatus(mpStatusRight);
+		return mpStatusLeft.isLast && mpStatusRight.isLast;
+	}
+
+	public void disableMotionProfile() {
+		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
+		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
 	}
 
 	private enum MotionProfiles {
