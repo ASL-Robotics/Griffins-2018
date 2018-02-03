@@ -32,8 +32,8 @@ public class Drivetrain extends Subsystem {
 			x = 0;
 		if (z <= 0.05 && z >= -0.05)
 			z = 0;
-		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, x - z);
-		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, x + z);
+		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, x + z);
+		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, x - z);
 
 		if (x - z != 0 || x + z != 0) {
 			System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.getSelectedSensorVelocity(0) + "\t"
