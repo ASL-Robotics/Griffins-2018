@@ -240,30 +240,30 @@ public class YellowBrickRoad {
 		/*
 		 * location B to location F
 		 */
-		Waypoint[] pointsBF= new Waypoint[] { 
+		Waypoint[] pointsDF= new Waypoint[] { 
 				new Waypoint(4.2672, 1.186, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
-				new Waypoint(5.8039, 2.3305, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
+				new Waypoint(7.1158, 1.98775, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
-		Trajectory.Config configBF = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
+		Trajectory.Config configDF = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
 				Trajectory.Config.SAMPLES_HIGH, 0.01, MAX_VELOCITY, MAX_ACCELERATION, MAX_JERK);
 
 		// Last three things in the constructor above are maximum velocity, max
 		// acceleration, jerk (change in acceleration)
-		Trajectory trajectoryBF = Pathfinder.generate(pointsBF, configBF);
+		Trajectory trajectoryDF = Pathfinder.generate(pointsDF, configDF);
 
 		// The .modify(0.64) at the end changes it for the distance between the wheels
-		TankModifier modifierBF = new TankModifier(trajectoryBF).modify(0.64);
-		Trajectory leftBF = modifierBF.getLeftTrajectory();
-		Trajectory rightBF = modifierBF.getRightTrajectory();
+		TankModifier modifierDF = new TankModifier(trajectoryDF).modify(0.64);
+		Trajectory leftDF = modifierDF.getLeftTrajectory();
+		Trajectory rightDF = modifierDF.getRightTrajectory();
 
 		// Save Left
-		File leftFileBF = new File("leftFileBF.csv");
-		Pathfinder.writeToCSV(leftFileBF, leftBF);
+		File leftFileDF = new File("leftFileDF.csv");
+		Pathfinder.writeToCSV(leftFileDF, leftDF);
 
 		// Save Right
-		File rightFileBF = new File("rightFileBF.csv");
-		Pathfinder.writeToCSV(rightFileBF, rightBF);
+		File rightFileDF = new File("rightFileDF.csv");
+		Pathfinder.writeToCSV(rightFileDF, rightDF);
 		
 		/*
 		 * location B to location C
