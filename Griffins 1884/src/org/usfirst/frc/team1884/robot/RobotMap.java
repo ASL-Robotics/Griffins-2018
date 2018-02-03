@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1884.robot;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -51,10 +53,18 @@ public class RobotMap {
 	public static void init() {
 		// Initialize Drivetrain motors
 		DRIVETRAIN_MOTOR_FL = new TalonSRX(0);
+		DRIVETRAIN_MOTOR_FL.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		DRIVETRAIN_MOTOR_FL.setSensorPhase(true);
+		DRIVETRAIN_MOTOR_FL.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_1Ms, 0);
+		DRIVETRAIN_MOTOR_FL.configVelocityMeasurementWindow(1, 0);
 		DRIVETRAIN_MOTOR_BL = new TalonSRX(1);
 		DRIVETRAIN_MOTOR_BL.follow(DRIVETRAIN_MOTOR_FL);
 
 		DRIVETRAIN_MOTOR_FR = new TalonSRX(2);
+		DRIVETRAIN_MOTOR_FR.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		DRIVETRAIN_MOTOR_FR.setSensorPhase(true);
+		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_1Ms, 0);
+		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementWindow(1, 0);
 		DRIVETRAIN_MOTOR_BR = new TalonSRX(3);
 		DRIVETRAIN_MOTOR_BR.follow(DRIVETRAIN_MOTOR_FR);
 
