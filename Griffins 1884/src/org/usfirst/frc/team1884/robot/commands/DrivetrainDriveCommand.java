@@ -23,7 +23,7 @@ public class DrivetrainDriveCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		// TODO change to driver - used operator to test
-		Robot.drivetrain.drive(OI.operator.getRightY(), OI.operator.getLeftX());
+		Robot.drivetrain.drive(OI.operator.getLeftY(), OI.operator.getRightX());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
