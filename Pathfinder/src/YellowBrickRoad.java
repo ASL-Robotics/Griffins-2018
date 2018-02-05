@@ -156,8 +156,9 @@ public class YellowBrickRoad {
 		/*
 		 * location C to location E
 		 */
-		Waypoint[] pointsCE = new Waypoint[] { new Waypoint(7.1158, 6.2261, Math.PI), // Waypoint @ x=-2, y=-2, exit angle=0
-																				// radians
+		Waypoint[] pointsCE = new Waypoint[] { new Waypoint(7.1158, 6.2261, Math.PI), // Waypoint @ x=-2, y=-2, exit
+																						// angle=0
+				// radians
 				new Waypoint(5.8039, 5.8834, Math.PI) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -240,8 +241,9 @@ public class YellowBrickRoad {
 		/*
 		 * location B to location F
 		 */
-		Waypoint[] pointsDF = new Waypoint[] { new Waypoint(4.2672, 1.186, Math.PI), // Waypoint @ x=-2, y=-2, exit angle=0
-																				// radians
+		Waypoint[] pointsDF = new Waypoint[] { new Waypoint(4.2672, 1.186, Math.PI), // Waypoint @ x=-2, y=-2, exit
+																						// angle=0
+				// radians
 				new Waypoint(7.1158, 1.98775, Math.PI) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
