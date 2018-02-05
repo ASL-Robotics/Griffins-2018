@@ -16,8 +16,8 @@ public class YellowBrickRoad {
 		/*
 		 * location 1 to location A
 		 */
-		Waypoint[] points1A = new Waypoint[] { 
-				new Waypoint(0.4503, 7.908, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		Waypoint[] points1A = new Waypoint[] { new Waypoint(0.4503, 7.908, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
 				new Waypoint(4.2672, 7.908, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -44,8 +44,8 @@ public class YellowBrickRoad {
 		/*
 		 * location 2 to location A
 		 */
-		Waypoint[] points2A = new Waypoint[] { 
-				new Waypoint(0.4503, 4.288, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		Waypoint[] points2A = new Waypoint[] { new Waypoint(0.4503, 4.288, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
 				new Waypoint(4.2672, 7.908, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -72,8 +72,8 @@ public class YellowBrickRoad {
 		/*
 		 * location 3 to location B
 		 */
-		Waypoint[] points3B = new Waypoint[] { 
-				new Waypoint(0.4503, 1.186, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		Waypoint[] points3B = new Waypoint[] { new Waypoint(0.4503, 1.186, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
 				new Waypoint(4.2672, 1.186, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -100,8 +100,8 @@ public class YellowBrickRoad {
 		/*
 		 * location A to location C
 		 */
-		Waypoint[] pointsAC = new Waypoint[] { 
-				new Waypoint(4.2672, 7.908, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		Waypoint[] pointsAC = new Waypoint[] { new Waypoint(4.2672, 7.908, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
 				new Waypoint(7.1158, 6.2261, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -128,8 +128,8 @@ public class YellowBrickRoad {
 		/*
 		 * location A to location D
 		 */
-		Waypoint[] pointsAD = new Waypoint[] { 
-				new Waypoint(4.2672, 7.908, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		Waypoint[] pointsAD = new Waypoint[] { new Waypoint(4.2672, 7.908, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
 				new Waypoint(7.1158, 1.9878, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -152,13 +152,13 @@ public class YellowBrickRoad {
 		// Save Right
 		File rightFileAD = new File("rightFileAD.csv");
 		Pathfinder.writeToCSV(rightFileAD, rightAD);
-		
+
 		/*
 		 * location C to location E
 		 */
-		Waypoint[] pointsCE = new Waypoint[] { 
-				new Waypoint(7.1158, 6.2261, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
-				new Waypoint(5.8039, 5.8834, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
+		Waypoint[] pointsCE = new Waypoint[] { new Waypoint(7.1158, 6.2261, Math.PI), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
+				new Waypoint(5.8039, 5.8834, Math.PI) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
 		Trajectory.Config configCE = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
@@ -180,12 +180,12 @@ public class YellowBrickRoad {
 		// Save Right
 		File rightFileCE = new File("rightFileCE.csv");
 		Pathfinder.writeToCSV(rightFileCE, rightCE);
-		
+
 		/*
 		 * location 2 to location B
 		 */
-		Waypoint[] points2B = new Waypoint[] { 
-				new Waypoint(0.4503, 4.288, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		Waypoint[] points2B = new Waypoint[] { new Waypoint(0.4503, 4.288, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
 				new Waypoint(4.2672, 1.186, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -208,12 +208,12 @@ public class YellowBrickRoad {
 		// Save Right
 		File rightFile2B = new File("rightFile2B.csv");
 		Pathfinder.writeToCSV(rightFile2B, right2B);
-		
+
 		/*
 		 * location B to location D
 		 */
-		Waypoint[] pointsBD = new Waypoint[] { 
-				new Waypoint(4.2672, 1.186, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		Waypoint[] pointsBD = new Waypoint[] { new Waypoint(4.2672, 1.186, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
 				new Waypoint(7.1158, 1.9878, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -236,13 +236,13 @@ public class YellowBrickRoad {
 		// Save Right
 		File rightFileBD = new File("rightFileBD.csv");
 		Pathfinder.writeToCSV(rightFileBD, rightBD);
-		
+
 		/*
 		 * location B to location F
 		 */
-		Waypoint[] pointsDF= new Waypoint[] { 
-				new Waypoint(4.2672, 1.186, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
-				new Waypoint(7.1158, 1.98775, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
+		Waypoint[] pointsDF = new Waypoint[] { new Waypoint(4.2672, 1.186, Math.PI), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
+				new Waypoint(7.1158, 1.98775, Math.PI) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
 		Trajectory.Config configDF = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
@@ -264,12 +264,12 @@ public class YellowBrickRoad {
 		// Save Right
 		File rightFileDF = new File("rightFileDF.csv");
 		Pathfinder.writeToCSV(rightFileDF, rightDF);
-		
+
 		/*
 		 * location B to location C
 		 */
-		Waypoint[] pointsBC= new Waypoint[] { 
-				new Waypoint(4.2672, 1.186, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		Waypoint[] pointsBC = new Waypoint[] { new Waypoint(4.2672, 1.186, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
 				new Waypoint(7.1158, 6.2261, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -292,12 +292,12 @@ public class YellowBrickRoad {
 		// Save Right
 		File rightFileBC = new File("rightFileBC.csv");
 		Pathfinder.writeToCSV(rightFileBC, rightBC);
-		
+
 		/*
 		 * location E to location C
 		 */
-		Waypoint[] pointsEC= new Waypoint[] { 
-				new Waypoint(5.8039, 5.8834, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		Waypoint[] pointsEC = new Waypoint[] { new Waypoint(5.8039, 5.8834, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
 				new Waypoint(7.1158, 6.2261, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -320,13 +320,12 @@ public class YellowBrickRoad {
 		// Save Right
 		File rightFileEC = new File("rightFileEC.csv");
 		Pathfinder.writeToCSV(rightFileEC, rightEC);
-		
+
 		/*
-		 * location 
-		 * F to location D
+		 * location F to location D
 		 */
-		Waypoint[] pointsFD= new Waypoint[] { 
-				new Waypoint(5.8039, 2.3305, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
+		Waypoint[] pointsFD = new Waypoint[] { new Waypoint(5.8039, 2.3305, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																				// radians
 				new Waypoint(7.1158, 1.9878, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
@@ -343,24 +342,23 @@ public class YellowBrickRoad {
 		Trajectory rightFD = modifierFD.getRightTrajectory();
 
 		// Save Left
-		File leftFileFD = new File("leftFilFDC.csv");
+		File leftFileFD = new File("leftFileFD.csv");
 		Pathfinder.writeToCSV(leftFileFD, leftFD);
 
 		// Save Right
 		File rightFileFD = new File("rightFileFD.csv");
 		Pathfinder.writeToCSV(rightFileFD, rightFD);
-		
+
 		/*
-		 * location 
-		 * Turn 180
+		 * location Turn 180
 		 */
-		Waypoint[] pointsRot180L= new Waypoint[] { 
-				new Waypoint(0, 0, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
-				new Waypoint(Math.PI*0.32, Math.PI*0.32, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
+		Waypoint[] pointsRot180L = new Waypoint[] { new Waypoint(0, 0, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																			// radians
+				new Waypoint(Math.PI * 0.32, Math.PI * 0.32, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
-		Waypoint[] pointsRot180R= new Waypoint[] { 
-				new Waypoint(0, 0, 0), // Waypoint @ x=-2, y=-2, exit angle=0 radians
-				new Waypoint(-Math.PI*0.32, -Math.PI*0.32, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
+		Waypoint[] pointsRot180R = new Waypoint[] { new Waypoint(0, 0, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+																			// radians
+				new Waypoint(-Math.PI * 0.32, -Math.PI * 0.32, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
 		};
 
 		Trajectory.Config configRot180L = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
@@ -372,7 +370,6 @@ public class YellowBrickRoad {
 		// acceleration, jerk (change in acceleration)
 		Trajectory trajectoryRot180L = Pathfinder.generate(pointsRot180L, configRot180L);
 		Trajectory trajectoryRot180R = Pathfinder.generate(pointsRot180R, configRot180R);
-
 
 		// Save Left
 		File leftFileRot180L = new File("leftFileRot180L.csv");
