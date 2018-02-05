@@ -1,18 +1,15 @@
 package org.usfirst.frc.team1884.robot.commands.motionprofiles;
 
-import org.usfirst.frc.team1884.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * intake cube 
+ *
  */
-public class MotionProfileB extends Command {
+public class MotionProfileDF extends Command {
 
-    public MotionProfileB() {
+    public MotionProfileDF() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    		requires(Robot.drivetrain); 
     }
 
     // Called just before this Command runs the first time

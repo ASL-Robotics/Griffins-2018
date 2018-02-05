@@ -1,15 +1,18 @@
 package org.usfirst.frc.team1884.robot.commands.motionprofiles;
 
+import org.usfirst.frc.team1884.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * drives robot straight from left starting position 
  */
-public class MotionProfileH extends Command {
-
-    public MotionProfileH() {
+public class MotionProfile1A extends Command {
+	
+    public MotionProfile1A() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    		requires(Robot.drivetrain); 
     }
 
     // Called just before this Command runs the first time

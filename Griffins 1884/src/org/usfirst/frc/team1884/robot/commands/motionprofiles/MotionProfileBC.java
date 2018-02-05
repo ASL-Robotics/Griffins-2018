@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MotionProfileC extends Command {
+public class MotionProfileBC extends Command {
 
-    public MotionProfileC() {
+    public MotionProfileBC() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
