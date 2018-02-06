@@ -36,7 +36,7 @@ public class MotionProfile1A extends Command {
 	protected void end() {
 		Robot.drivetrain.disableMotionProfile();
 	}
-
+ 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
