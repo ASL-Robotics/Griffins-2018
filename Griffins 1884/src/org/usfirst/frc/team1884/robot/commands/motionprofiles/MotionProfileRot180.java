@@ -18,8 +18,8 @@ public class MotionProfileRot180 extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfiles.left1A,
-		Drivetrain.RightMotionProfiles.right1A);
+		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfiles.leftRot180,
+		Drivetrain.RightMotionProfiles.rightRot180);
 		Robot.drivetrain.enableMotionProfile();
     }
 
