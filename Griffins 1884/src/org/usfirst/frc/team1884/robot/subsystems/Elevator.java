@@ -15,10 +15,16 @@ public class Elevator extends Subsystem {
 	public static class Height {
 		public static final int LOW = 7, MIDDLE = 8, HIGH = 9;
 	}
+	
+	public Elevator () {
+		//TODO change the kPID values to real ones 
+		RobotMap.ELEVATOR_MOTOR.config_kP(0, 10, 10);
+		RobotMap.ELEVATOR_MOTOR.config_kI(0, 10, 10);
+		RobotMap.ELEVATOR_MOTOR.config_kD(0, 10, 10);
+	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new ElevatorLowCommand());
-		RobotMap.ELEVATOR_MOTOR.config_kP(0, 10, 10);
+
 	}
 
 	public void setHeight(int height) {
