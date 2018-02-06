@@ -7,7 +7,7 @@ import jaci.pathfinder.modifiers.TankModifier;
 
 public class YellowBrickRoad {
 
-	final static double MAX_VELOCITY = 3.841;
+	final static double MAX_VELOCITY = (3.841);
 	final static double MAX_ACCELERATION = 114.84;
 	final static double MAX_JERK = 11981.157;
 

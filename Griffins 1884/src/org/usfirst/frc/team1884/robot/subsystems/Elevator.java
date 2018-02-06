@@ -1,8 +1,8 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
+import org.usfirst.frc.team1884.robot.Robot;
 import org.usfirst.frc.team1884.robot.RobotMap;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
+import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -28,7 +28,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public void setHeight(int height) {
-		RobotMap.ELEVATOR_MOTOR.set(ControlMode.Position, height);
+		
 	}
 
 	public void toggleClaw() {
@@ -37,8 +37,5 @@ public class Elevator extends Subsystem {
 		} else {
 			RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kReverse);
 		}
-	}
-	public boolean isPushed(){
-		 return RobotMap.ELEVATOR_SWITCH.get();
 	}
 }

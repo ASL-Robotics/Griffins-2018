@@ -65,7 +65,6 @@ public class RobotMap {
 		DRIVETRAIN_MOTOR_FR = new TalonSRX(2);
 		DRIVETRAIN_MOTOR_FR.setInverted(true);
 		DRIVETRAIN_MOTOR_FR.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-		DRIVETRAIN_MOTOR_FR.setSensorPhase(true);
 		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms, 0);
 		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementWindow(1, 0);
 		DRIVETRAIN_MOTOR_BR = new TalonSRX(3);
@@ -85,11 +84,11 @@ public class RobotMap {
 
 		ELEVATOR_PISTON = new DoubleSolenoid(2, 3);
 
-		CLIMBER_MOTOR = new VictorSP(2);
+		CLIMBER_MOTOR = new VictorSP(4);
 		CLIMBER_PISTON = new DoubleSolenoid(4, 5);
 
 		FLIPPER_L = new DoubleSolenoid(6, 7);
-		FLIPPER_R = new DoubleSolenoid(8, 9);
+		//FLIPPER_R = new DoubleSolenoid(8, 9);
 	}
 
 }

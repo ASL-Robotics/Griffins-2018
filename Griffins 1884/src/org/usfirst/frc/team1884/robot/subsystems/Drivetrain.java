@@ -2,11 +2,13 @@ package org.usfirst.frc.team1884.robot.subsystems;
 
 import org.usfirst.frc.team1884.robot.RobotMap;
 import org.usfirst.frc.team1884.robot.commands.DrivetrainDriveCommand;
+
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motion.TrajectoryPoint;
 import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -19,6 +21,8 @@ public class Drivetrain extends Subsystem {
 	public Drivetrain() {
 		mpStatusLeft = new MotionProfileStatus();
 		mpStatusRight = new MotionProfileStatus();
+		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, 0.623, 10); 
+		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, 0.623, 10); 
 	}
 
 	public void initDefaultCommand() {
@@ -44,7 +48,7 @@ public class Drivetrain extends Subsystem {
 	 * @param durationMs
 	 * @return enum equivalent of durationMs
 	 */
-	private TrajectoryDuration GetTrajectoryDuration1(int durationMs) {
+	private TrajectoryDuration getTrajectoryDuration(int durationMs) {
 		TrajectoryDuration td = TrajectoryDuration.Trajectory_Duration_0ms;
 		td = td.valueOf(durationMs);
 		if (td.value != durationMs) {
@@ -72,17 +76,17 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FR.configMotionProfileTrajectoryPeriod(0, 10);
 		
 		for (int i = 0; i < leftProfile.length; i++) {
-			tpLeft.position = leftProfile[i][0];
-			tpRight.position = rightProfile[i][0];
+			tpLeft.position = (leftProfile[i][0])*3.133;
+			tpRight.position = (rightProfile[i][0])*3.133;
 			
-			tpLeft.velocity = leftProfile[i][1];
-			tpRight.velocity = rightProfile[i][1];
+			tpLeft.velocity = (leftProfile[i][1])*187.978;
+			tpRight.velocity = (rightProfile[i][1])*187.978; 
 			
 			tpLeft.profileSlotSelect0 = 0;
 			tpRight.profileSlotSelect0 = 0;
 			
-			tpLeft.timeDur = GetTrajectoryDuration1((int) leftProfile[i][2]);
-			tpRight.timeDur = GetTrajectoryDuration1((int) rightProfile[i][2]);
+			tpLeft.timeDur = getTrajectoryDuration((int) leftProfile[i][2]);
+			tpRight.timeDur = getTrajectoryDuration((int) rightProfile[i][2]);
 			
 			if (i != 0) {
 				tpLeft.zeroPos = false;

@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1884.robot;
 
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile1A;
 import org.usfirst.frc.team1884.robot.subsystems.Climber;
 import org.usfirst.frc.team1884.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
@@ -75,6 +76,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		(new MotionProfile1A()).start(); 
 	}
 
 	/**
