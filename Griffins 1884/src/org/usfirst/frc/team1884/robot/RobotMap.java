@@ -74,17 +74,17 @@ public class RobotMap {
 		INTAKE_MOTOR_L2 = new VictorSP(2);
 		INTAKE_MOTOR_R2 = new VictorSP(3);
 
-		// INTAKE_PISTON = new DoubleSolenoid(0, 1);
+		INTAKE_PISTON = new DoubleSolenoid(0, 1);
 
-		// ELEVATOR_MOTOR = new TalonSRX(4);
+		ELEVATOR_MOTOR = new TalonSRX(4);
 
-		// ELEVATOR_PISTON = new DoubleSolenoid(2, 3);
+		ELEVATOR_PISTON = new DoubleSolenoid(2, 3);
 
-		// CLIMBER_MOTOR = new VictorSP(2);
-		// CLIMBER_PISTON = new DoubleSolenoid(4, 5);
+		CLIMBER_MOTOR = new VictorSP(2);
+		CLIMBER_PISTON = new DoubleSolenoid(4, 5);
 
-		// FLIPPER_L = new DoubleSolenoid(6, 7);
-		// FLIPPER_R = new DoubleSolenoid(8, 9);
+		FLIPPER_L = new DoubleSolenoid(6, 7);
+		FLIPPER_R = new DoubleSolenoid(8, 9);
 	}
 
 }
