@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -38,6 +39,8 @@ public class RobotMap {
 	public static TalonSRX ELEVATOR_MOTOR;
 
 	public static DoubleSolenoid ELEVATOR_PISTON;
+	
+	public static DigitalInput ELEVATOR_SWITCH;
 
 	// Climber
 	// declare + initialize Climber motor
@@ -77,6 +80,8 @@ public class RobotMap {
 		INTAKE_PISTON = new DoubleSolenoid(0, 1);
 
 		ELEVATOR_MOTOR = new TalonSRX(4);
+		
+		ELEVATOR_SWITCH = new DigitalInput(0);
 
 		ELEVATOR_PISTON = new DoubleSolenoid(2, 3);
 
