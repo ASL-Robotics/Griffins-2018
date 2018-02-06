@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
 import org.usfirst.frc.team1884.robot.RobotMap;
+import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -11,10 +12,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Elevator extends Subsystem {
 
 	public void initDefaultCommand() {
-		// TODO
+		setDefaultCommand(new ElevatorLowCommand());
 	}
 
-	public void setHeight(Height h) {
+	public void setHeight(int height) {
 
 	}
 
@@ -26,7 +27,7 @@ public class Elevator extends Subsystem {
 		}
 	}
 
-	public enum Height {
-		LOW, MIDDLE, HIGH;
+	public static class Height {
+		public static final int LOW = 7, MIDDLE = 8, HIGH = 9;
 	}
 }
