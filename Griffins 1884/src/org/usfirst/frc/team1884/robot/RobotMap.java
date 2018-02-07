@@ -59,6 +59,7 @@ public class RobotMap {
 		DRIVETRAIN_MOTOR_FL.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		DRIVETRAIN_MOTOR_FL.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms, 0);
 		DRIVETRAIN_MOTOR_FL.configVelocityMeasurementWindow(1, 0);
+		DRIVETRAIN_MOTOR_FL.changeMotionControlFramePeriod(5);
 		DRIVETRAIN_MOTOR_BL = new TalonSRX(1);
 		DRIVETRAIN_MOTOR_BL.follow(DRIVETRAIN_MOTOR_FL);
 
@@ -67,6 +68,7 @@ public class RobotMap {
 		DRIVETRAIN_MOTOR_FR.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms, 0);
 		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementWindow(1, 0);
+		DRIVETRAIN_MOTOR_FL.changeMotionControlFramePeriod(5);
 		DRIVETRAIN_MOTOR_BR = new TalonSRX(3);
 		DRIVETRAIN_MOTOR_BR.setInverted(true);
 		DRIVETRAIN_MOTOR_BR.follow(DRIVETRAIN_MOTOR_FR);

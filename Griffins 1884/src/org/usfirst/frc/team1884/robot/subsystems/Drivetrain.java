@@ -10,6 +10,7 @@ import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,12 +18,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 	private MotionProfileStatus mpStatusLeft, mpStatusRight;
+	private Notifier notifier;
 
 	public Drivetrain() {
 		mpStatusLeft = new MotionProfileStatus();
+		RobotMap.DRIVETRAIN_MOTOR_FL.getMotionProfileStatus(mpStatusLeft);
 		mpStatusRight = new MotionProfileStatus();
-		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, 0.623, 10); 
-		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, 0.623, 10); 
+		RobotMap.DRIVETRAIN_MOTOR_FR.getMotionProfileStatus(mpStatusRight);
+
+		notifier = new Notifier(new PeriodicRunnable());
+		
+		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, -0.623, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, -0.623, 10);
 	}
 
 	public void initDefaultCommand() {
@@ -57,59 +64,69 @@ public class Drivetrain extends Subsystem {
 		}
 		return td;
 	}
+	
+	class PeriodicRunnable implements java.lang.Runnable{
 
+		@Override
+		public void run() {
+			RobotMap.DRIVETRAIN_MOTOR_FL.processMotionProfileBuffer();
+			RobotMap.DRIVETRAIN_MOTOR_FR.processMotionProfileBuffer();
+		}
+		
+	}
+	
 	public void initializeMotionProfile(double[][] leftProfile, double[][] rightProfile) {
+		
+		notifier.startPeriodic(0.005);
+		
 		TrajectoryPoint tpLeft = new TrajectoryPoint();
 		TrajectoryPoint tpRight = new TrajectoryPoint();
-		
+
 		if (mpStatusLeft.hasUnderrun) {
 			RobotMap.DRIVETRAIN_MOTOR_FL.clearMotionProfileHasUnderrun(0);
 		}
 		if (mpStatusRight.hasUnderrun) {
 			RobotMap.DRIVETRAIN_MOTOR_FR.clearMotionProfileHasUnderrun(0);
 		}
-		
+
 		RobotMap.DRIVETRAIN_MOTOR_FL.clearMotionProfileTrajectories();
 		RobotMap.DRIVETRAIN_MOTOR_FR.clearMotionProfileTrajectories();
-		
+
 		RobotMap.DRIVETRAIN_MOTOR_FL.configMotionProfileTrajectoryPeriod(0, 10);
 		RobotMap.DRIVETRAIN_MOTOR_FR.configMotionProfileTrajectoryPeriod(0, 10);
-		
+
 		for (int i = 0; i < leftProfile.length; i++) {
-			tpLeft.position = (leftProfile[i][0])*3.133;
-			tpRight.position = (rightProfile[i][0])*3.133;
-			
-			tpLeft.velocity = (leftProfile[i][1])*187.978;
-			tpRight.velocity = (rightProfile[i][1])*187.978; 
-			
+			tpLeft.position = (leftProfile[i][0]) * 3.133;
+			tpRight.position = (rightProfile[i][0]) * 3.133;
+
+			tpLeft.velocity = (leftProfile[i][1]) * 187.978;
+			tpRight.velocity = (rightProfile[i][1]) * 187.978;
+
 			tpLeft.profileSlotSelect0 = 0;
 			tpRight.profileSlotSelect0 = 0;
-			
+
 			tpLeft.timeDur = getTrajectoryDuration((int) leftProfile[i][2]);
 			tpRight.timeDur = getTrajectoryDuration((int) rightProfile[i][2]);
-			
-			if (i != 0) {
-				tpLeft.zeroPos = false;
-				tpRight.zeroPos = false;
-			} else {
+
+			tpLeft.zeroPos = false;
+			tpRight.zeroPos = false;
+
+			if (i == 0) {
 				tpLeft.zeroPos = true;
 				tpRight.zeroPos = true;
 			}
+
+			tpLeft.isLastPoint = false;
+			tpRight.isLastPoint = false;
 			
-			if (i + 1 != leftProfile.length) {
-				tpLeft.isLastPoint = false;
-				tpRight.isLastPoint = false;
-			} else {
+			if (i + 1 == leftProfile.length) {
 				tpLeft.isLastPoint = true;
 				tpRight.isLastPoint = true;
 			}
-			
+
 			RobotMap.DRIVETRAIN_MOTOR_FL.pushMotionProfileTrajectory(tpLeft);
 			RobotMap.DRIVETRAIN_MOTOR_FR.pushMotionProfileTrajectory(tpRight);
 		}
-		
-		RobotMap.DRIVETRAIN_MOTOR_FL.processMotionProfileBuffer();
-		RobotMap.DRIVETRAIN_MOTOR_FR.processMotionProfileBuffer();
 	}
 
 	public void enableMotionProfile() {
@@ -120,10 +137,15 @@ public class Drivetrain extends Subsystem {
 	public boolean motionProfileIsDone() {
 		RobotMap.DRIVETRAIN_MOTOR_FL.getMotionProfileStatus(mpStatusLeft);
 		RobotMap.DRIVETRAIN_MOTOR_FR.getMotionProfileStatus(mpStatusRight);
-		return mpStatusLeft.isLast && mpStatusRight.isLast;
+
+		System.out.println(mpStatusLeft.isUnderrun + "\t" + mpStatusRight.isUnderrun);
+		
+		return (mpStatusLeft.isLast && mpStatusRight.isLast) /*|| (mpStatusLeft.isUnderrun && mpStatusRight.isUnderrun)*/;
 	}
 
 	public void disableMotionProfile() {
+		notifier.stop();
+		
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
 		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
 	}
