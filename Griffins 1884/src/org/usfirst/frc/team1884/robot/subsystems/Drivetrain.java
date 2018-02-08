@@ -27,7 +27,7 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FR.getMotionProfileStatus(mpStatusRight);
 
 		notifier = new Notifier(new PeriodicRunnable());
-		
+
 		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, -1.063, 10);
 		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, -1.063, 10);
 	}
@@ -64,21 +64,21 @@ public class Drivetrain extends Subsystem {
 		}
 		return td;
 	}
-	
-	class PeriodicRunnable implements java.lang.Runnable{
+
+	class PeriodicRunnable implements java.lang.Runnable {
 
 		@Override
-		public void run() { 
+		public void run() {
 			RobotMap.DRIVETRAIN_MOTOR_FL.processMotionProfileBuffer();
 			RobotMap.DRIVETRAIN_MOTOR_FR.processMotionProfileBuffer();
 		}
-		
+
 	}
-	
+
 	public void initializeMotionProfile(double[][] leftProfile, double[][] rightProfile) {
-		
+
 		notifier.startPeriodic(0.004);
-		
+
 		TrajectoryPoint tpLeft = new TrajectoryPoint();
 		TrajectoryPoint tpRight = new TrajectoryPoint();
 
@@ -118,7 +118,7 @@ public class Drivetrain extends Subsystem {
 
 			tpLeft.isLastPoint = false;
 			tpRight.isLastPoint = false;
-			
+
 			if (i + 1 == leftProfile.length) {
 				tpLeft.isLastPoint = true;
 				tpRight.isLastPoint = true;
@@ -132,7 +132,7 @@ public class Drivetrain extends Subsystem {
 	public void enableMotionProfile() {
 		RobotMap.DRIVETRAIN_MOTOR_FL.setIntegralAccumulator(0, 0, 10);
 		RobotMap.DRIVETRAIN_MOTOR_FR.setIntegralAccumulator(0, 0, 10);
-		
+
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
 		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
 	}
@@ -141,15 +141,20 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FL.getMotionProfileStatus(mpStatusLeft);
 		RobotMap.DRIVETRAIN_MOTOR_FR.getMotionProfileStatus(mpStatusRight);
 
-		System.out.println(mpStatusLeft.isUnderrun + "\t" +mpStatusRight.isUnderrun);
-		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.getMotorOutputPercent() + "\t" + RobotMap.DRIVETRAIN_MOTOR_FR.getMotorOutputPercent());
-		
-		return (mpStatusLeft.isLast && mpStatusRight.isLast) /*|| (mpStatusLeft.isUnderrun && mpStatusRight.isUnderrun)*/;
+		System.out.println(mpStatusLeft.isUnderrun + "\t" + mpStatusRight.isUnderrun);
+		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.getMotorOutputPercent() + "\t"
+				+ RobotMap.DRIVETRAIN_MOTOR_FR.getMotorOutputPercent());
+
+		return (mpStatusLeft.isLast
+				&& mpStatusRight.isLast) /*
+											 * || (mpStatusLeft.isUnderrun &&
+											 * mpStatusRight.isUnderrun)
+											 */;
 	}
 
 	public void disableMotionProfile() {
 		notifier.stop();
-		
+
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
 		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile, SetValueMotionProfile.Disable.value);
 	}
@@ -182,7 +187,9 @@ public class Drivetrain extends Subsystem {
 				{ 3.53372, 3.841, 10.0 }, { 3.57213, 3.841, 10.0 }, { 3.61054, 3.841, 10.0 }, { 3.64895, 3.841, 10.0 },
 				{ 3.68736, 3.841, 10.0 }, { 3.72577, 3.841, 10.0 }, { 3.761172, 3.540227, 10.0 },
 				{ 3.788766, 2.759329, 10.0 }, { 3.806756, 1.799079, 10.0 }, { 3.815145, 0.838829, 10.0 },
-				{ 3.816938, 0.179352, 10.0 }, { 3.816938, 0, 10.0 } };
+				{ 3.816938, 0.179352, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 },
+				{ 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 },
+				{ 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, };
 		public static double[][] left2A = { { 0.004801, 0.96025, 10.0 }, { 0.01728, 1.247864, 10.0 },
 				{ 0.038022, 2.074186, 10.0 }, { 0.066941, 2.89192, 10.0 }, { 0.099817, 3.287622, 10.0 },
 				{ 0.132503, 3.268613, 10.0 }, { 0.164995, 3.249208, 10.0 }, { 0.19729, 3.229471, 10.0 },
@@ -627,7 +634,9 @@ public class Drivetrain extends Subsystem {
 				{ 3.53372, 3.841, 10.0 }, { 3.57213, 3.841, 10.0 }, { 3.61054, 3.841, 10.0 }, { 3.64895, 3.841, 10.0 },
 				{ 3.68736, 3.841, 10.0 }, { 3.72577, 3.841, 10.0 }, { 3.761172, 3.540227, 10.0 },
 				{ 3.788766, 2.759329, 10.0 }, { 3.806756, 1.799079, 10.0 }, { 3.815145, 0.838829, 10.0 },
-				{ 3.816938, 0.179352, 10.0 }, { 3.816938, 0, 10.0 } };
+				{ 3.816938, 0.179352, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 },
+				{ 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 },
+				{ 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, { 3.816938, 0, 10.0 }, };
 		public static double[][] right2A = { { 0.004801, 0.96025, 10.0 }, { 0.02113, 1.632882, 10.0 },
 				{ 0.048401, 2.727043, 10.0 }, { 0.086698, 3.82977, 10.0 }, { 0.130641, 4.394282, 10.0 },
 				{ 0.174774, 4.413284, 10.0 }, { 0.219101, 4.432683, 10.0 }, { 0.263625, 4.452412, 10.0 },
