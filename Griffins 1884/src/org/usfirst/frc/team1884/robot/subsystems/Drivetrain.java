@@ -28,8 +28,8 @@ public class Drivetrain extends Subsystem {
 
 		notifier = new Notifier(new PeriodicRunnable());
 		
-		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, -0.623, 10);
-		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, -0.623, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, 3.189, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, 3.189, 10);
 	}
 
 	public void initDefaultCommand() {
@@ -138,7 +138,7 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FL.getMotionProfileStatus(mpStatusLeft);
 		RobotMap.DRIVETRAIN_MOTOR_FR.getMotionProfileStatus(mpStatusRight);
 
-		System.out.println(mpStatusLeft.isUnderrun + "\t" + mpStatusRight.isUnderrun);
+		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.getMotorOutputPercent() + "\t" + RobotMap.DRIVETRAIN_MOTOR_FR.getMotorOutputPercent());
 		
 		return (mpStatusLeft.isLast && mpStatusRight.isLast) /*|| (mpStatusLeft.isUnderrun && mpStatusRight.isUnderrun)*/;
 	}
