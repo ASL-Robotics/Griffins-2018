@@ -28,8 +28,8 @@ public class Drivetrain extends Subsystem {
 
 		notifier = new Notifier(new PeriodicRunnable());
 		
-		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, 3.189, 10);
-		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, 3.189, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, -1.063, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, -1.063, 10);
 	}
 
 	public void initDefaultCommand() {
@@ -68,7 +68,7 @@ public class Drivetrain extends Subsystem {
 	class PeriodicRunnable implements java.lang.Runnable{
 
 		@Override
-		public void run() {
+		public void run() { 
 			RobotMap.DRIVETRAIN_MOTOR_FL.processMotionProfileBuffer();
 			RobotMap.DRIVETRAIN_MOTOR_FR.processMotionProfileBuffer();
 		}
@@ -77,7 +77,7 @@ public class Drivetrain extends Subsystem {
 	
 	public void initializeMotionProfile(double[][] leftProfile, double[][] rightProfile) {
 		
-		notifier.startPeriodic(0.005);
+		notifier.startPeriodic(0.004);
 		
 		TrajectoryPoint tpLeft = new TrajectoryPoint();
 		TrajectoryPoint tpRight = new TrajectoryPoint();
@@ -130,6 +130,9 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void enableMotionProfile() {
+		RobotMap.DRIVETRAIN_MOTOR_FL.setIntegralAccumulator(0, 0, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FR.setIntegralAccumulator(0, 0, 10);
+		
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
 		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
 	}
@@ -138,6 +141,7 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FL.getMotionProfileStatus(mpStatusLeft);
 		RobotMap.DRIVETRAIN_MOTOR_FR.getMotionProfileStatus(mpStatusRight);
 
+		System.out.println(mpStatusLeft.isUnderrun + "\t" +mpStatusRight.isUnderrun);
 		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.getMotorOutputPercent() + "\t" + RobotMap.DRIVETRAIN_MOTOR_FR.getMotorOutputPercent());
 		
 		return (mpStatusLeft.isLast && mpStatusRight.isLast) /*|| (mpStatusLeft.isUnderrun && mpStatusRight.isUnderrun)*/;
