@@ -28,8 +28,8 @@ public class Drivetrain extends Subsystem {
 
 		notifier = new Notifier(new PeriodicRunnable());
 
-		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, -1.063, 10);
-		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, -1.063, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, -0.623, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, -0.623, 10);
 	}
 
 	public void initDefaultCommand() {
@@ -96,11 +96,14 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FR.configMotionProfileTrajectoryPeriod(0, 10);
 
 		for (int i = 0; i < leftProfile.length; i++) {
-			tpLeft.position = (leftProfile[i][0]) * 3.133;
-			tpRight.position = (rightProfile[i][0]) * 3.133;
+			
+			// m to N.U.
+			tpLeft.position = (leftProfile[i][0]) * 3208.163;
+			tpRight.position = (rightProfile[i][0]) * 3208.163;
 
-			tpLeft.velocity = (leftProfile[i][1]) * 187.978;
-			tpRight.velocity = (rightProfile[i][1]) * 187.978;
+			// m to N.U./100ms
+			tpLeft.velocity = (leftProfile[i][1]) * 320.816;
+			tpRight.velocity = (rightProfile[i][1]) * 320.816;
 
 			tpLeft.profileSlotSelect0 = 0;
 			tpRight.profileSlotSelect0 = 0;
@@ -132,6 +135,9 @@ public class Drivetrain extends Subsystem {
 	public void enableMotionProfile() {
 		RobotMap.DRIVETRAIN_MOTOR_FL.setIntegralAccumulator(0, 0, 10);
 		RobotMap.DRIVETRAIN_MOTOR_FR.setIntegralAccumulator(0, 0, 10);
+		
+		RobotMap.DRIVETRAIN_MOTOR_FL.setSelectedSensorPosition(0, 0, 10);
+		RobotMap.DRIVETRAIN_MOTOR_FR.setSelectedSensorPosition(0, 0, 10);
 
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
 		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.MotionProfile, SetValueMotionProfile.Enable.value);
@@ -141,13 +147,15 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FL.getMotionProfileStatus(mpStatusLeft);
 		RobotMap.DRIVETRAIN_MOTOR_FR.getMotionProfileStatus(mpStatusRight);
 
-		System.out.println(mpStatusLeft.isUnderrun + "\t" + mpStatusRight.isUnderrun);
+		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.getClosedLoopError(0) + "\t"
+				+ RobotMap.DRIVETRAIN_MOTOR_FR.getClosedLoopError(0));
 		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.getMotorOutputPercent() + "\t"
-				+ RobotMap.DRIVETRAIN_MOTOR_FR.getMotorOutputPercent());
+				+ RobotMap.DRIVETRAIN_MOTOR_FL.getMotorOutputPercent());
 
 		return (mpStatusLeft.isLast
 				&& mpStatusRight.isLast) /*
-											 * || (mpStatusLeft.isUnderrun && mpStatusRight.isUnderrun)
+											 * || (mpStatusLeft.isUnderrun &&
+											 * mpStatusRight.isUnderrun)
 											 */;
 	}
 
