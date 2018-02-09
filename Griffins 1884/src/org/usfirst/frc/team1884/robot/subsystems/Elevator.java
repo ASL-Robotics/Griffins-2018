@@ -1,8 +1,8 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
-import org.usfirst.frc.team1884.robot.Robot;
 import org.usfirst.frc.team1884.robot.RobotMap;
-import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -37,5 +37,17 @@ public class Elevator extends Subsystem {
 		} else {
 			RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kReverse);
 		}
+	}
+	
+	public void stopElevator() {
+		RobotMap.ELEVATOR_MOTOR.set(ControlMode.PercentOutput, 0, 0);
+	}
+	
+	public boolean isAtPosition (int position, int variance) {
+		if (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) >= (position - variance)
+				&& (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) <= (position + variance))) {
+			return true;
+		}
+		return false;
 	}
 }
