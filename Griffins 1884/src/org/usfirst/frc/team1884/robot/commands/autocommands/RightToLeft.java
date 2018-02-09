@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1884.robot.commands.autocommands;
 
+import org.usfirst.frc.team1884.robot.commands.ElevatorClawCommand;
+import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
+import org.usfirst.frc.team1884.robot.commands.ElevatorTopCommand;
+import org.usfirst.frc.team1884.robot.commands.IntakeInCommand;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile3B;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileBD;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileDF;
@@ -17,12 +21,19 @@ public class RightToLeft extends CommandGroup {
     	addSequential(new MotionProfile3B());
     	addSequential(new MotionProfileBD());
     	//Add command to put on switch here
+    	addSequential(new ElevatorTopCommand());
+    	addSequential(new ElevatorClawCommand());
+    	addSequential(new ElevatorLowCommand());
     	addSequential(new MotionProfileRot180());
     	addSequential(new MotionProfileDF());
     	//Add command to pick up box
+    	addSequential(new IntakeInCommand());
+    	addSequential(new ElevatorClawCommand());
     	addSequential(new MotionProfileRot180());
     	addSequential(new MotionProfileFD());
     	//Add command to put on switch here
+    	addSequential(new ElevatorTopCommand());
+    	addSequential(new ElevatorClawCommand());
     	
     	
         // Add Commands here:
