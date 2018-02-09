@@ -1,10 +1,8 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
-import org.usfirst.frc.team1884.robot.Robot;
 import org.usfirst.frc.team1884.robot.RobotMap;
-import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
 
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -40,7 +38,20 @@ public class Elevator extends Subsystem {
 			RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
+	
 	public boolean switchHit(){
 		return RobotMap.ELEVATOR_SWITCH.get();
+	}
+	
+	public boolean isAtPosition(int pos, int tol){
+		if (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) >= (pos - tol)
+				&& (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) <= (pos + tol))) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void stopElevator(){
+		RobotMap.ELEVATOR_MOTOR.set(ControlMode.PercentOutput, 0);
 	}
 }
