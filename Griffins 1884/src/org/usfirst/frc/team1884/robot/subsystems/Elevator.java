@@ -4,6 +4,8 @@ import org.usfirst.frc.team1884.robot.Robot;
 import org.usfirst.frc.team1884.robot.RobotMap;
 import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
 
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -37,5 +39,8 @@ public class Elevator extends Subsystem {
 		} else {
 			RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kReverse);
 		}
+	}
+	public boolean switchHit(){
+		return RobotMap.ELEVATOR_SWITCH.get();
 	}
 }
