@@ -1,9 +1,9 @@
 package org.usfirst.frc.team1884.robot.commands.autocommands;
 
-import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile1A;
-import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileAC;
-import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileCE;
-import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileEC;
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile2B;
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileBD;
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileDF;
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileFD;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileRot180;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -11,17 +11,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftToLeft extends CommandGroup {
+public class MiddleToRight extends CommandGroup {
 
-    public LeftToLeft() {
-    	addSequential(new MotionProfile1A());
-    	addSequential(new MotionProfileAC());
+    public MiddleToRight() {
+    	addSequential(new MotionProfile2B());
+    	addSequential(new MotionProfileBD());
     	//Add command to put on switch here
     	addSequential(new MotionProfileRot180());
-    	addSequential(new MotionProfileCE());
+    	addSequential(new MotionProfileDF());
     	//Add command to pick up box
     	addSequential(new MotionProfileRot180());
-    	addSequential(new MotionProfileEC());
+    	addSequential(new MotionProfileFD());
     	//Add command to put on switch here
     	
         // Add Commands here:

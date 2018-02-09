@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot.commands.autocommands;
 
-import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile1A;
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile2A;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileAC;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileCE;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileEC;
@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftToLeft extends CommandGroup {
+public class MiddleToLeft extends CommandGroup {
 
-    public LeftToLeft() {
-    	addSequential(new MotionProfile1A());
+    public MiddleToLeft() {
+    	addSequential(new MotionProfile2A());
     	addSequential(new MotionProfileAC());
     	//Add command to put on switch here
     	addSequential(new MotionProfileRot180());
@@ -23,6 +23,7 @@ public class LeftToLeft extends CommandGroup {
     	addSequential(new MotionProfileRot180());
     	addSequential(new MotionProfileEC());
     	//Add command to put on switch here
+    	
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
