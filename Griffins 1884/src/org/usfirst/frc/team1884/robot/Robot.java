@@ -7,15 +7,26 @@
 
 package org.usfirst.frc.team1884.robot;
 
-import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile1A;
+import org.usfirst.frc.team1884.robot.commands.autocommands.CrossLineLeft;
+import org.usfirst.frc.team1884.robot.commands.autocommands.DoNothing;
+import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToLeft;
+import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToRight;
+import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToLeft;
+import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToRight;
+import org.usfirst.frc.team1884.robot.commands.autocommands.RightToLeft;
+import org.usfirst.frc.team1884.robot.commands.autocommands.RightToRight;
 import org.usfirst.frc.team1884.robot.subsystems.Climber;
 import org.usfirst.frc.team1884.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Flipper;
 import org.usfirst.frc.team1884.robot.subsystems.Intake;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,13 +36,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  * project.
  */
 public class Robot extends TimedRobot {
+	public int station; 
+
 	public static OI m_oi;
-	public static Flipper flipper; 
+	public static Flipper flipper;
 	public static Climber climber;
-	public static Intake intake; 
-	public static Drivetrain drivetrain; 
+	public static Intake intake;
+	public static Drivetrain drivetrain;
 	public static Elevator elevator;
-	
+
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -39,12 +52,14 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		drivetrain = new Drivetrain(); 
+		drivetrain = new Drivetrain();
 		elevator = new Elevator();
-		flipper = new Flipper(); 
-		climber = new Climber(); 
-		intake = new Intake(); 
+		flipper = new Flipper();
+		climber = new Climber();
+		intake = new Intake();
 		m_oi = new OI();
+
+		station = DriverStation.getInstance().getLocation(); 
 	}
 
 	/**
@@ -76,7 +91,34 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		(new MotionProfile1A()).start(); 
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		 
+		if (gameData.length() > 0) {
+			//scale is on the left
+			if (gameData.charAt(1) == 'L') {
+				//starting at left 
+				if (station == 1) 
+					(new LeftToLeft()).start(); 
+				//starting at middle 
+				if (station == 2)
+					(new MiddleToLeft()).start(); 
+				//starting at right 
+				if (station == 3)
+					(new RightToLeft()).start(); 
+			//scale is on the right
+			} else {
+				//starting at left
+				if (station == 1)
+					(new LeftToRight()).start(); 
+				//starting at middle 
+				if (station == 2)
+					(new MiddleToRight()).start(); 
+				//starting at right 
+				if (station == 3)
+					(new RightToRight()).start(); 
+			}
+		}
 	}
 
 	/**
