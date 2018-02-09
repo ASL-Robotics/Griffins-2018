@@ -8,11 +8,13 @@
 package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.commands.autocommands.CrossLineLeft;
+import org.usfirst.frc.team1884.robot.commands.autocommands.CrossLineRight;
 import org.usfirst.frc.team1884.robot.commands.autocommands.DoNothing;
 import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToLeft;
 import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToRight;
 import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToLeft;
 import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToRight;
+import org.usfirst.frc.team1884.robot.commands.autocommands.RightCrossLineMiddle;
 import org.usfirst.frc.team1884.robot.commands.autocommands.RightToLeft;
 import org.usfirst.frc.team1884.robot.commands.autocommands.RightToRight;
 import org.usfirst.frc.team1884.robot.subsystems.Climber;
@@ -26,7 +28,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,8 +37,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-	public int station; 
-
+	Command autonomousCommand;
+	SendableChooser autoChooser;
 	public static OI m_oi;
 	public static Flipper flipper;
 	public static Climber climber;
@@ -58,8 +59,12 @@ public class Robot extends TimedRobot {
 		climber = new Climber();
 		intake = new Intake();
 		m_oi = new OI();
-
-		station = DriverStation.getInstance().getLocation(); 
+		autoChooser = new SendableChooser();
+		autoChooser.addDefault("Default Program - Do Nothing", new DoNothing());
+		autoChooser.addObject("Start Left Side", new CrossLineLeft());
+		autoChooser.addObject("Start Middle", new RightCrossLineMiddle());
+		autoChooser.addObject("Start Right Side", new CrossLineRight());
+		
 	}
 
 	/**
@@ -93,29 +98,30 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		autonomousCommand = (Command) autoChooser.getSelected();
 		 
 		if (gameData.length() > 0) {
 			//scale is on the left
 			if (gameData.charAt(1) == 'L') {
 				//starting at left 
-				if (station == 1) 
+				if (autonomousCommand == new CrossLineLeft()) 
 					(new LeftToLeft()).start(); 
 				//starting at middle 
-				if (station == 2)
+				if (autonomousCommand == new RightCrossLineMiddle())
 					(new MiddleToLeft()).start(); 
 				//starting at right 
-				if (station == 3)
+				if (autonomousCommand == new CrossLineRight())
 					(new RightToLeft()).start(); 
 			//scale is on the right
 			} else {
 				//starting at left
-				if (station == 1)
+				if (autonomousCommand == new CrossLineLeft())
 					(new LeftToRight()).start(); 
 				//starting at middle 
-				if (station == 2)
+				if (autonomousCommand == new RightCrossLineMiddle())
 					(new MiddleToRight()).start(); 
 				//starting at right 
-				if (station == 3)
+				if (autonomousCommand == new CrossLineRight())
 					(new RightToRight()).start(); 
 			}
 		}
