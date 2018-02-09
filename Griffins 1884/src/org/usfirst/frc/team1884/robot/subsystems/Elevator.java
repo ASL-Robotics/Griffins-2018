@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Elevator extends Subsystem {
 	
 	public static class Height {
-		public static final int LOW = 7, MIDDLE = 8, HIGH = 9;
+		public static final int LOW = 6, MIDDLE_LOW = 7, MIDDLE_HIGH = 8, HIGH = 9;
 	}
 	
 	public Elevator () {
@@ -37,11 +37,6 @@ public class Elevator extends Subsystem {
 		} else {
 			RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kReverse);
 		}
-	}
-
-	
-	public boolean switchHit(){
-		return RobotMap.ELEVATOR_SWITCH.get();
 	}
 	
 	public void stopElevator() {

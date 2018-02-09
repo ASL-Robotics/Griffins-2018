@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ElevatorLowCommand extends Command {
+public class ElevatorMiddleHighCommand extends Command {
 
-	public ElevatorLowCommand() {
+	public ElevatorMiddleHighCommand() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.elevator);
@@ -18,7 +18,7 @@ public class ElevatorLowCommand extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.elevator.setHeight(Elevator.Height.LOW);
+		Robot.elevator.setHeight(Elevator.Height.MIDDLE_HIGH);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -27,7 +27,7 @@ public class ElevatorLowCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.elevator.isAtPosition(Elevator.Height.LOW, 20); 
+		return Robot.elevator.isAtPosition(Elevator.Height.MIDDLE_HIGH, 20); 
 	}
 
 	// Called once after isFinished returns true
@@ -39,5 +39,4 @@ public class ElevatorLowCommand extends Command {
 	// subsystems is scheduled to run
 	protected void interrupted() {
 	}
-
 }
