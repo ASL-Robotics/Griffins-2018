@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1884.robot.commands.autocommands;
 
+import org.usfirst.frc.team1884.robot.commands.ElevatorClawCommand;
+import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
+import org.usfirst.frc.team1884.robot.commands.ElevatorTopCommand;
+import org.usfirst.frc.team1884.robot.commands.IntakeInCommand;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile1A;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileAC;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileCE;
@@ -14,15 +18,33 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftToLeft extends CommandGroup {
 
     public LeftToLeft() {
+    	//important: claw should start off closed around box 
+    	//go to scale 1st time 
     	addSequential(new MotionProfile1A());
     	addSequential(new MotionProfileAC());
-    	//Add command to put on switch here
+    	
+    	//put cube on scale 
+    	addSequential(new ElevatorTopCommand()); 
+    	//opens claw - releasing cube
+    	addSequential(new ElevatorClawCommand()); 
+    	addSequential(new ElevatorLowCommand()); 
+    	
+    	//go to stack of cubes 
     	addSequential(new MotionProfileRot180());
     	addSequential(new MotionProfileCE());
-    	//Add command to pick up box
+    	
+    	//pick up cube
+    	addSequential(new IntakeInCommand());
+    	//closes claw
+    	addSequential(new ElevatorClawCommand()); 
+    	
+    	//go to scale 2nd time 
     	addSequential(new MotionProfileRot180());
     	addSequential(new MotionProfileEC());
-    	//Add command to put on switch here
+    	
+    	//put cube on scale
+    	addSequential(new ElevatorTopCommand()); 
+    	addSequential(new ElevatorClawCommand()); 
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

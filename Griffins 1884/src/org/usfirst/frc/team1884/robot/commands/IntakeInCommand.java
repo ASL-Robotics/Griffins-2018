@@ -17,6 +17,7 @@ public class IntakeInCommand extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		setTimeout(2000); 
 		Robot.intake.intake();
 	}
 
