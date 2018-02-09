@@ -4,8 +4,11 @@ import org.usfirst.frc.team1884.robot.Robot;
 import org.usfirst.frc.team1884.robot.RobotMap;
 import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+=======
+>>>>>>> parent of 12efb38... added methods in the elevator class - to be used in elevator commands
 =======
 >>>>>>> parent of 12efb38... added methods in the elevator class - to be used in elevator commands
 
@@ -44,9 +47,12 @@ public class Elevator extends Subsystem {
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public boolean switchHit(){
 		return RobotMap.ELEVATOR_SWITCH.get();
 	}
+=======
+>>>>>>> parent of 12efb38... added methods in the elevator class - to be used in elevator commands
 =======
 >>>>>>> parent of 12efb38... added methods in the elevator class - to be used in elevator commands
 }
