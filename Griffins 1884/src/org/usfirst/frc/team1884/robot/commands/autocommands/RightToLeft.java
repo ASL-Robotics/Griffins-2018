@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1884.robot.commands.autocommands;
 
+import org.usfirst.frc.team1884.robot.commands.ElevatorClawCommand;
+import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
+import org.usfirst.frc.team1884.robot.commands.ElevatorTopCommand;
+import org.usfirst.frc.team1884.robot.commands.IntakeInCommand;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile3B;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileBD;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileDF;
@@ -13,33 +17,26 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class RightToLeft extends CommandGroup {
 
-    public RightToLeft() {
-    	addSequential(new MotionProfile3B());
-    	addSequential(new MotionProfileBD());
-    	//Add command to put on switch here
-    	addSequential(new MotionProfileRot180());
-    	addSequential(new MotionProfileDF());
-    	//Add command to pick up box
-    	addSequential(new MotionProfileRot180());
-    	addSequential(new MotionProfileFD());
-    	//Add command to put on switch here
-    	
-    	
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
+	public RightToLeft() {
+		//Drive to scale
+		addSequential(new MotionProfile3B());
+		addSequential(new MotionProfileBD());
+		//Put cube on scale
+		addSequential(new ElevatorTopCommand());
+		addSequential(new ElevatorClawCommand());
+		addSequential(new ElevatorLowCommand());
+		//Drive to cube
+		addSequential(new MotionProfileRot180());
+		addSequential(new MotionProfileDF());
+		//Pick up cube
+		addSequential(new IntakeInCommand());
+		addSequential(new ElevatorClawCommand());
+		//Drive to scale
+		addSequential(new MotionProfileRot180());
+		addSequential(new MotionProfileFD());
+		//Put cube on scale
+		addSequential(new ElevatorTopCommand());
+		addSequential(new ElevatorClawCommand());
 
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
-    }
+	}
 }
