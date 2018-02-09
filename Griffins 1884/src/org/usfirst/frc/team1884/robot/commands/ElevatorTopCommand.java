@@ -30,12 +30,16 @@ public class ElevatorTopCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.elevator.isAtPosition(Elevator.Height.HIGH, 20); 
+		if (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) >= (Elevator.Height.HIGH - 20)
+				&& (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) <= (Elevator.Height.HIGH + 20))) {
+			return true;
+		}
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.elevator.stopElevator();
+		RobotMap.ELEVATOR_MOTOR.set(ControlMode.PercentOutput, 0, 0);
 	}
 
 	// Called when another command which requires one or more of the same
