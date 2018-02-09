@@ -69,7 +69,7 @@ public class RobotMap {
 		DRIVETRAIN_MOTOR_FR = new TalonSRX(2);
 		//DRIVETRAIN_MOTOR_FR.setInverted(true);
 		DRIVETRAIN_MOTOR_FR.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-		//DRIVETRAIN_MOTOR_FL.setSensorPhase(true);
+		DRIVETRAIN_MOTOR_FR.setSensorPhase(true);
 		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms, 0);
 		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementWindow(1, 0);
 		DRIVETRAIN_MOTOR_FL.changeMotionControlFramePeriod(4);
