@@ -85,6 +85,7 @@ public class RobotMap {
 		INTAKE_PISTON = new DoubleSolenoid(0, 1);
 
 		ELEVATOR_MOTOR = new TalonSRX(4);
+		ELEVATOR_MOTOR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0); 
 		
 		ELEVATOR_SWITCH = new DigitalInput(0);
 
