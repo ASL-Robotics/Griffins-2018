@@ -1,10 +1,7 @@
 package org.usfirst.frc.team1884.robot.commands;
 
 import org.usfirst.frc.team1884.robot.Robot;
-import org.usfirst.frc.team1884.robot.RobotMap;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -30,16 +27,12 @@ public class ElevatorMiddleCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) >= (Elevator.Height.MIDDLE - 20)
-				&& (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) <= (Elevator.Height.MIDDLE + 20))) {
-			return true;
-		}
-		return false;
+		return Robot.elevator.isAtPosition(Elevator.Height.MIDDLE, 20); 
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		RobotMap.ELEVATOR_MOTOR.set(ControlMode.PercentOutput, 0, 0);
+		Robot.elevator.stopElevator();
 	}
 
 	// Called when another command which requires one or more of the same
