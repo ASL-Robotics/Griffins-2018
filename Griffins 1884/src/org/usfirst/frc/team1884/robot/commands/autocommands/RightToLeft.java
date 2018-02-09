@@ -18,17 +18,23 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightToLeft extends CommandGroup {
 
 	public RightToLeft() {
+		//Drive to scale
 		addSequential(new MotionProfile3B());
 		addSequential(new MotionProfileBD());
+		//Put cube on scale
 		addSequential(new ElevatorTopCommand());
 		addSequential(new ElevatorClawCommand());
 		addSequential(new ElevatorLowCommand());
+		//Drive to cube
 		addSequential(new MotionProfileRot180());
 		addSequential(new MotionProfileDF());
+		//Pick up cube
 		addSequential(new IntakeInCommand());
 		addSequential(new ElevatorClawCommand());
+		//Drive to scale
 		addSequential(new MotionProfileRot180());
 		addSequential(new MotionProfileFD());
+		//Put cube on scale
 		addSequential(new ElevatorTopCommand());
 		addSequential(new ElevatorClawCommand());
 
