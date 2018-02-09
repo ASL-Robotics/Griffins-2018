@@ -29,9 +29,9 @@ public class Drivetrain extends Subsystem {
 		notifier = new Notifier(new PeriodicRunnable());
 
 		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, 0.623, 10);
-		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.config_kP(0, 0, 10));
+		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.config_kP(0, 0.441, 10));
 		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, 0.623, 10);
-		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FR.config_kP(0, 0, 10));
+		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FR.config_kP(0, 0.441, 10));
 	}
 
 	public void initDefaultCommand() {
@@ -44,7 +44,7 @@ public class Drivetrain extends Subsystem {
 		if (z <= 0.05 && z >= -0.05)
 			z = 0;
 		RobotMap.DRIVETRAIN_MOTOR_FL.set(ControlMode.PercentOutput, -x + z);
-		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, - x - z);
+		RobotMap.DRIVETRAIN_MOTOR_FR.set(ControlMode.PercentOutput, -x - z);
 		if (x - z != 0 || x + z != 0) {
 			System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.getSelectedSensorVelocity(0) + "\t"
 					+ RobotMap.DRIVETRAIN_MOTOR_FR.getSelectedSensorVelocity(0));
@@ -101,7 +101,7 @@ public class Drivetrain extends Subsystem {
 		RobotMap.DRIVETRAIN_MOTOR_FR.configMotionProfileTrajectoryPeriod(0, 10);
 
 		for (int i = 0; i < leftProfile.length; i++) {
-			
+
 			// m to N.U.
 			tpLeft.position = (leftProfile[i][0]) * 3208.163;
 			tpRight.position = (rightProfile[i][0]) * 3208.163;
@@ -148,9 +148,10 @@ public class Drivetrain extends Subsystem {
 
 		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.getClosedLoopError(0) + "\t"
 				+ RobotMap.DRIVETRAIN_MOTOR_FR.getClosedLoopError(0));
-		
+
+
 		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.getMotorOutputPercent() + "\t"
-				+ RobotMap.DRIVETRAIN_MOTOR_FL.getMotorOutputPercent());
+				+ RobotMap.DRIVETRAIN_MOTOR_FR.getMotorOutputPercent());
 
 		return (mpStatusLeft.isLast
 				&& mpStatusRight.isLast) /*

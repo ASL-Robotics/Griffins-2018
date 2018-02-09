@@ -39,6 +39,7 @@ public class Elevator extends Subsystem {
 		}
 	}
 
+	
 	public boolean switchHit(){
 		return RobotMap.ELEVATOR_SWITCH.get();
 	}
