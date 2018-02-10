@@ -380,5 +380,34 @@ public class YellowBrickRoad {
 		// Save Right
 		File rightFileRot180R = new File("rightFileRot180R.csv");
 		Pathfinder.writeToCSV(rightFileRot180R, trajectoryRot180R);
+		
+		/*
+		 * When at scale, drive forward after lift has been raised
+		 */
+		Waypoint[] pointsScaleForward = new Waypoint[] { new Waypoint(0, 0, 0), // Waypoint @ x=-2, y=-2, exit angle=0
+				// radians
+				new Waypoint(0.2, 0, 0) // Waypoint @ x=0, y=0, exit angle=0 radians
+		};
+
+		Trajectory.Config configScaleForward = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
+				Trajectory.Config.SAMPLES_HIGH, 0.01, MAX_VELOCITY, MAX_ACCELERATION, MAX_JERK);
+
+		// Last three things in the constructor above are maximum velocity, max
+		// acceleration, jerk (change in acceleration)
+		Trajectory trajectoryScaleForward = Pathfinder.generate(pointsScaleForward, configScaleForward);
+
+		// The .modify(0.64) at the end changes it for the distance between the wheels
+		TankModifier modifierScaleForward = new TankModifier(trajectoryScaleForward).modify(0.64);
+		Trajectory leftScaleForward = modifierScaleForward.getLeftTrajectory();
+		Trajectory rightScaleForward = modifierScaleForward.getRightTrajectory();
+
+		// Save Left
+		File leftFileScaleForwad = new File("leftFileScaleForward.csv");
+		Pathfinder.writeToCSV(leftFileScaleForwad, leftScaleForward);
+
+		// Save Right
+		File rightFileScaleForward = new File("rightFileScaleForward.csv");
+		Pathfinder.writeToCSV(rightFileScaleForward, rightScaleForward);
+
 	}
 }
