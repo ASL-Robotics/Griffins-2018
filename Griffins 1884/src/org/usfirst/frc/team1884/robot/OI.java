@@ -37,7 +37,7 @@ public class OI {
 		
 		//climb commands 
 		operator.getNorth().whileHeld(new ClimberClimbCommand());
-		operator.getLeftStick().whenPressed(new ClimberDeployCommand()); 
+		operator.getLeftStick().whileHeld(new ClimberDeployCommand()); 
 		
 		//flipper commands 
 		operator.getLeftBumper().whenPressed(new FlipperLeftCommand()); 
