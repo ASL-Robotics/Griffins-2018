@@ -18,8 +18,6 @@ public class Intake extends Subsystem {
 	public void intake() {
 		RobotMap.INTAKE_MOTOR_L.set(1);
 		RobotMap.INTAKE_MOTOR_R.set(-1);
-		RobotMap.INTAKE_MOTOR_L2.set(1);
-		RobotMap.INTAKE_MOTOR_R2.set(-1);
 	}
 
 	public void toggleIntake() {
@@ -33,15 +31,11 @@ public class Intake extends Subsystem {
 	public void outtake() {
 		RobotMap.INTAKE_MOTOR_L.set(-1);
 		RobotMap.INTAKE_MOTOR_R.set(1);
-		RobotMap.INTAKE_MOTOR_L2.set(-1);
-		RobotMap.INTAKE_MOTOR_R2.set(1);
 	}
 
 	public void off() {
 		RobotMap.INTAKE_MOTOR_L.stopMotor();
 		RobotMap.INTAKE_MOTOR_R.stopMotor();
-		RobotMap.INTAKE_MOTOR_L2.stopMotor();
-		RobotMap.INTAKE_MOTOR_R2.stopMotor();
 	}
 
 }
