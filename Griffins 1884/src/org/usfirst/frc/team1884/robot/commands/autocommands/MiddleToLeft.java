@@ -4,7 +4,7 @@ import org.usfirst.frc.team1884.robot.commands.ElevatorClawCommand;
 import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
 import org.usfirst.frc.team1884.robot.commands.ElevatorTopCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeInCommand;
-import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile2A;
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile2C;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileAC;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileCE;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileEC;
@@ -20,7 +20,7 @@ public class MiddleToLeft extends CommandGroup {
 
     public MiddleToLeft() {
     	//go to scale
-    	addSequential(new MotionProfile2A());
+    	addSequential(new MotionProfile2C());
     	addSequential(new MotionProfileAC());
 
     //put cube on scale 

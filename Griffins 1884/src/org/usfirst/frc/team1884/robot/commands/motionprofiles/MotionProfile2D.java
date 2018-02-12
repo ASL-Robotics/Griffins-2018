@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * intake cube 
  */
-public class MotionProfile2A extends Command {
+public class MotionProfile2D extends Command {
 
-    public MotionProfile2A() {
+    public MotionProfile2D() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     		requires(Robot.drivetrain); 
@@ -18,8 +18,8 @@ public class MotionProfile2A extends Command {
 
  // Called just before this Command runs the first time
  	protected void initialize() {
- 		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfiles.left2A,
- 				Drivetrain.RightMotionProfiles.right2A);
+ 		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesA.left2D,
+ 				Drivetrain.RightMotionProfilesA.right2D);
  		Robot.drivetrain.enableMotionProfile();
  	}
 

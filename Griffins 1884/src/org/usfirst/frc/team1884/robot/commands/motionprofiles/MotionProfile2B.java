@@ -19,8 +19,8 @@ public class MotionProfile2B extends Command {
 
  // Called just before this Command runs the first time
  	protected void initialize() {
- 		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfiles.left2B,
- 				Drivetrain.RightMotionProfiles.right2B);
+ 		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesA.left2B,
+ 				Drivetrain.RightMotionProfilesA.right2B);
  		Robot.drivetrain.enableMotionProfile();
  	}
 
