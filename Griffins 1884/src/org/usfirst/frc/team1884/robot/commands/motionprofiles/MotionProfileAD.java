@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MotionProfile3D extends Command {
+public class MotionProfileAD extends Command {
 
-    public MotionProfile3D() {
+    public MotionProfileAD() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 		requires(Robot.drivetrain);
@@ -19,8 +19,8 @@ public class MotionProfile3D extends Command {
 
  // Called just before this Command runs the first time
  	protected void initialize() {
- 		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesA.left3D,
- 				Drivetrain.RightMotionProfilesA.right3D);
+ 		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfiles.leftAD,
+ 				Drivetrain.RightMotionProfiles.rightAD);
  		Robot.drivetrain.enableMotionProfile();
  	}
 

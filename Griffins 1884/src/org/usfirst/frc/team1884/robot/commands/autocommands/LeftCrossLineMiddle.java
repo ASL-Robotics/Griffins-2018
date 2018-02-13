@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot.commands.autocommands;
 
-import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile2C;
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile2A;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftCrossLineMiddle extends CommandGroup {
 
     public LeftCrossLineMiddle() {
-    		addSequential(new MotionProfile2C());
+    		addSequential(new MotionProfile2A());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

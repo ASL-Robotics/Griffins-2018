@@ -18,8 +18,8 @@ public class MotionProfileFD extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesB.leftFD,
-		Drivetrain.RightMotionProfilesB.rightFD);
+		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfiles.leftFD,
+		Drivetrain.RightMotionProfiles.rightFD);
 		Robot.drivetrain.enableMotionProfile();
     }
 
