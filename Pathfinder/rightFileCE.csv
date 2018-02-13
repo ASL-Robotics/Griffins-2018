@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 position,velocity,dt
 0.000005,0.000974,10
 0.000022,0.001683,10
@@ -177,6 +178,8 @@ position,velocity,dt
 1.366263,0.00002,10
 1.366263,0,10
 =======
+=======
+>>>>>>> parent of 73cd4e7... Merge branch 'master' of https://github.com/ASL-Robotics/Griffins-2018
 {{0.004801,0.96025,10.0},
 
 {0.023993,1.919176,10.0},
@@ -258,4 +261,7 @@ position,velocity,dt
 {1.363491,0.172734,10.0},
 
 {1.363491,0,10.0}}
+<<<<<<< HEAD
+>>>>>>> parent of 73cd4e7... Merge branch 'master' of https://github.com/ASL-Robotics/Griffins-2018
+=======
 >>>>>>> parent of 73cd4e7... Merge branch 'master' of https://github.com/ASL-Robotics/Griffins-2018
