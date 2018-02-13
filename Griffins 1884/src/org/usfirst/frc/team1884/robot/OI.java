@@ -9,12 +9,11 @@ package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.commands.ClimberClimbCommand;
 import org.usfirst.frc.team1884.robot.commands.ClimberDeployCommand;
-import org.usfirst.frc.team1884.robot.commands.ElevatorClawCommand;
 import org.usfirst.frc.team1884.robot.commands.FlipperLeftCommand;
 import org.usfirst.frc.team1884.robot.commands.FlipperRightCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeInCommand;
-import org.usfirst.frc.team1884.robot.commands.IntakeOutCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakePistonCommand;
+import org.usfirst.frc.team1884.robot.commands.IntakeOutCommand;
 import org.usfirst.frc.team1884.robot.util.XBox;
 
 /**
@@ -45,6 +44,6 @@ public class OI {
 		operator.getRightBumper().whenPressed(new FlipperRightCommand()); 
 		
 		//elevator commands 
-		operator.getBButton().whenPressed(new ElevatorClawCommand());
+		//TODO
 	}	
 }
