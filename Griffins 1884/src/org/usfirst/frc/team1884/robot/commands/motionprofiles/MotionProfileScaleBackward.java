@@ -8,19 +8,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MotionProfileBD extends Command {
+public class MotionProfileScaleBackward extends Command {
 
-    public MotionProfileBD() {
+    public MotionProfileScaleBackward() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    		requires(Robot.drivetrain);
+    	requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfiles.leftBD,
-		Drivetrain.RightMotionProfiles.rightBD);
-		Robot.drivetrain.enableMotionProfile();
+    	Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesB.leftScaleBackward,
+    			Drivetrain.RightMotionProfilesB.rightScaleBackward);
+    			Robot.drivetrain.enableMotionProfile();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -40,6 +40,6 @@ public class MotionProfileBD extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-		end();
+    	end();
     }
 }
