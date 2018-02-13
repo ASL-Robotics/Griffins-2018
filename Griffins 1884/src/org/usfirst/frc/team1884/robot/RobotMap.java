@@ -29,7 +29,7 @@ public class RobotMap {
 
 	// Intake
 	// declare Intake motors
-	public static VictorSP INTAKE_MOTOR_L, INTAKE_MOTOR_R;
+	public static VictorSP INTAKE_MOTOR_L1, INTAKE_MOTOR_R1, INTAKE_MOTOR_L2, INTAKE_MOTOR_R2;
 
 	// declare Intake solenoid
 	public static DoubleSolenoid INTAKE_PISTON;
@@ -39,15 +39,15 @@ public class RobotMap {
 	public static TalonSRX ELEVATOR_MOTOR;
 
 	public static DoubleSolenoid ELEVATOR_PISTON;
-
+	
 	public static DigitalInput ELEVATOR_SWITCH;
 
 	// Climber
 	// declare + initialize Climber motor
-	public static VictorSP CLIMBER_CLIMB_MOTOR;
+	public static VictorSP CLIMBER_MOTOR;
 
 	// declare + initialize Climber piston
-	public static VictorSP CLIMBER_DEPLOY_MOTOR;
+	public static DoubleSolenoid CLIMBER_PISTON;
 
 	// Flipper
 	// declare + initialize Flipper solenoids
@@ -67,33 +67,35 @@ public class RobotMap {
 		DRIVETRAIN_MOTOR_BL.follow(DRIVETRAIN_MOTOR_FL);
 
 		DRIVETRAIN_MOTOR_FR = new TalonSRX(2);
-		// DRIVETRAIN_MOTOR_FR.setInverted(true);
+		//DRIVETRAIN_MOTOR_FR.setInverted(true);
 		DRIVETRAIN_MOTOR_FR.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		DRIVETRAIN_MOTOR_FR.setSensorPhase(true);
 		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms, 0);
 		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementWindow(1, 0);
 		DRIVETRAIN_MOTOR_FL.changeMotionControlFramePeriod(4);
 		DRIVETRAIN_MOTOR_BR = new TalonSRX(3);
-		// DRIVETRAIN_MOTOR_BR.setInverted(true);
+		//DRIVETRAIN_MOTOR_BR.setInverted(true);
 		DRIVETRAIN_MOTOR_BR.follow(DRIVETRAIN_MOTOR_FR);
 
-		INTAKE_MOTOR_L = new VictorSP(0);
-		INTAKE_MOTOR_R = new VictorSP(1);
+		INTAKE_MOTOR_L1 = new VictorSP(0);
+		INTAKE_MOTOR_R1 = new VictorSP(1);
+		INTAKE_MOTOR_L2 = new VictorSP(2);
+		INTAKE_MOTOR_R2 = new VictorSP(3);
 
 		INTAKE_PISTON = new DoubleSolenoid(0, 1);
 
 		ELEVATOR_MOTOR = new TalonSRX(4);
-		ELEVATOR_MOTOR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		ELEVATOR_MOTOR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0); 
+		
+		ELEVATOR_SWITCH = new DigitalInput(0);
 
 		ELEVATOR_PISTON = new DoubleSolenoid(2, 3);
 
-		ELEVATOR_SWITCH = new DigitalInput(0);
+		CLIMBER_MOTOR = new VictorSP(4);
+		CLIMBER_PISTON = new DoubleSolenoid(4, 5);
 
-		CLIMBER_CLIMB_MOTOR = new VictorSP(2);
-		CLIMBER_DEPLOY_MOTOR = new VictorSP(3);
-
-		FLIPPER_L = new DoubleSolenoid(4, 5);
-		FLIPPER_R = new DoubleSolenoid(6, 7);
+		FLIPPER_L = new DoubleSolenoid(6, 7);
+		//FLIPPER_R = new DoubleSolenoid(8, 9);
 	}
 
 }

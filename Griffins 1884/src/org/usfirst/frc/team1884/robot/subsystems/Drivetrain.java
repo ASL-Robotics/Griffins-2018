@@ -168,6 +168,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public static class LeftMotionProfiles {
+<<<<<<< HEAD
 		public static double[][] leftScaleForward = {{0.004801,0.96025,10},
 				{0.019205,1.440375,10},
 				{0.043211,2.400625,10},
@@ -189,6 +190,8 @@ public class Drivetrain extends Subsystem {
 				{0.200002,0,10},
 				{0.200002,0,10},
 				{0.200002,0,10},};
+=======
+>>>>>>> parent of 73cd4e7... Merge branch 'master' of https://github.com/ASL-Robotics/Griffins-2018
 		public static double[][] left1A = { { 0.004801, 0.96025, 10.0 }, { 0.019205, 1.440375, 10.0 },
 				{ 0.043211, 2.400625, 10.0 }, { 0.07682, 3.360875, 10.0 }, { 0.11523, 3.841, 10.0 },
 				{ 0.15364, 3.841, 10.0 }, { 0.19205, 3.841, 10.0 }, { 0.23046, 3.841, 10.0 }, { 0.26887, 3.841, 10.0 },
@@ -669,6 +672,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public static class RightMotionProfiles {
+<<<<<<< HEAD
 		public static double[][] rightScaleForward = {{0.004801,0.96025,10},
 				{0.019205,1.440375,10},
 				{0.043211,2.400625,10},
@@ -690,6 +694,8 @@ public class Drivetrain extends Subsystem {
 				{0.200002,0,10},
 				{0.200002,0,10},
 				{0.200002,0,10}};
+=======
+>>>>>>> parent of 73cd4e7... Merge branch 'master' of https://github.com/ASL-Robotics/Griffins-2018
 		public static double[][] right1A = { { 0.004801, 0.96025, 10.0 }, { 0.019205, 1.440375, 10.0 },
 				{ 0.043211, 2.400625, 10.0 }, { 0.07682, 3.360875, 10.0 }, { 0.11523, 3.841, 10.0 },
 				{ 0.15364, 3.841, 10.0 }, { 0.19205, 3.841, 10.0 }, { 0.23046, 3.841, 10.0 }, { 0.26887, 3.841, 10.0 },

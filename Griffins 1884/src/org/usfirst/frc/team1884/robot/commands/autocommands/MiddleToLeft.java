@@ -9,7 +9,6 @@ import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileAC;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileCE;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileEC;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileRot180;
-import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileScaleForward;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -24,15 +23,13 @@ public class MiddleToLeft extends CommandGroup {
     	addSequential(new MotionProfileAC());
 
     //put cube on scale 
-    	addSequential(new ElevatorTopCommand());
-    	addSequential(new MotionProfileScaleForward());
+    	addSequential(new ElevatorTopCommand()); 
     	//opens claw - releasing cube
     	addSequential(new ElevatorClawCommand()); 
     	addSequential(new ElevatorLowCommand()); 
 
     	//go to cubes 
     	addSequential(new MotionProfileRot180());
-    	addSequential(new MotionProfileScaleForward());
     	addSequential(new MotionProfileCE());
     	
     	//pick up cube
