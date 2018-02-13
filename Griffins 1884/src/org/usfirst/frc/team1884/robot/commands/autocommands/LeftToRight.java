@@ -9,6 +9,7 @@ import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileAD;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileDF;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileFD;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileRot180;
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileScaleForward;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -24,12 +25,14 @@ public class LeftToRight extends CommandGroup {
    
     	//put cube on scale 
     	addSequential(new ElevatorTopCommand()); 
+    	addSequential(new MotionProfileScaleForward());
     	//opens claw - releasing cube
     	addSequential(new ElevatorClawCommand()); 
     	addSequential(new ElevatorLowCommand()); 
     	
     	//go to cubes
     	addSequential(new MotionProfileRot180());
+    	addSequential(new MotionProfileScaleForward());
     	addSequential(new MotionProfileDF());
 
     	//pick up cube

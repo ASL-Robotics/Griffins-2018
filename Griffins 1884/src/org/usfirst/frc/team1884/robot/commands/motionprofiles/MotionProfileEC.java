@@ -18,8 +18,8 @@ public class MotionProfileEC extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfiles.leftEC,
-		Drivetrain.RightMotionProfiles.rightEC);
+		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesB.leftEC,
+		Drivetrain.RightMotionProfilesB.rightEC);
 		Robot.drivetrain.enableMotionProfile();
     }
 

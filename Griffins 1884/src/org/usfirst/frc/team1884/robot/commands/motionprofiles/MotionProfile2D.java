@@ -6,21 +6,20 @@ import org.usfirst.frc.team1884.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * intake cube 
  */
-public class MotionProfileAC extends Command {
+public class MotionProfile2D extends Command {
 
-    public MotionProfileAC() {
+    public MotionProfile2D() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-		requires(Robot.drivetrain);
-
+    		requires(Robot.drivetrain); 
     }
 
  // Called just before this Command runs the first time
  	protected void initialize() {
- 		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfiles.leftAC,
- 				Drivetrain.RightMotionProfiles.rightAC);
+ 		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesA.left2D,
+ 				Drivetrain.RightMotionProfilesA.right2D);
  		Robot.drivetrain.enableMotionProfile();
  	}
 
@@ -43,4 +42,5 @@ public class MotionProfileAC extends Command {
  	protected void interrupted() {
  		end();
  	}
+	
 }

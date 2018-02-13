@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * drives robot straight from left starting position
  */
-public class MotionProfile1A extends Command {
+public class MotionProfile1C extends Command {
 
-	public MotionProfile1A() {
+	public MotionProfile1C() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.drivetrain);
@@ -18,8 +18,8 @@ public class MotionProfile1A extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesA.left1A,
-		Drivetrain.RightMotionProfilesA.right1A);
+		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesA.left1C,
+		Drivetrain.RightMotionProfilesA.right1C);
 		Robot.drivetrain.enableMotionProfile();
 	}
 

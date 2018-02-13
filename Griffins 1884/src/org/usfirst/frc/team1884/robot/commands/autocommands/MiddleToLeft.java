@@ -4,11 +4,12 @@ import org.usfirst.frc.team1884.robot.commands.ElevatorClawCommand;
 import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
 import org.usfirst.frc.team1884.robot.commands.ElevatorTopCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeInCommand;
-import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile2A;
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfile2C;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileAC;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileCE;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileEC;
 import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileRot180;
+import org.usfirst.frc.team1884.robot.commands.motionprofiles.MotionProfileScaleForward;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -19,17 +20,19 @@ public class MiddleToLeft extends CommandGroup {
 
     public MiddleToLeft() {
     	//go to scale
-    	addSequential(new MotionProfile2A());
+    	addSequential(new MotionProfile2C());
     	addSequential(new MotionProfileAC());
 
     //put cube on scale 
-    	addSequential(new ElevatorTopCommand()); 
+    	addSequential(new ElevatorTopCommand());
+    	addSequential(new MotionProfileScaleForward());
     	//opens claw - releasing cube
     	addSequential(new ElevatorClawCommand()); 
     	addSequential(new ElevatorLowCommand()); 
 
     	//go to cubes 
     	addSequential(new MotionProfileRot180());
+    	addSequential(new MotionProfileScaleForward());
     	addSequential(new MotionProfileCE());
     	
     	//pick up cube
