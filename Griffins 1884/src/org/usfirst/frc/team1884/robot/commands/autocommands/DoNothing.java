@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DoNothing extends CommandGroup {
 
     public DoNothing() {
-    		addSequential(new MotionProfile3B()); 
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
