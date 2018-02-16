@@ -7,13 +7,32 @@
 
 package org.usfirst.frc.team1884.robot;
 
+import org.usfirst.frc.team1884.robot.commands.autocommands.CrossLine;
+import org.usfirst.frc.team1884.robot.commands.autocommands.DoNothing;
+import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToLeftScale;
+import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToLeftSwitch;
+import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToRightScale;
+import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToRightSwitch;
+import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToLeftScale;
+import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToLeftSwitch;
+import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToRightScale;
+import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToRightSwitch;
+import org.usfirst.frc.team1884.robot.commands.autocommands.RightToLeftScale;
+import org.usfirst.frc.team1884.robot.commands.autocommands.RightToLeftSwitch;
+import org.usfirst.frc.team1884.robot.commands.autocommands.RightToRightScale;
+import org.usfirst.frc.team1884.robot.commands.autocommands.RightToRightSwitch;
+
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -22,6 +41,8 @@ import edu.wpi.first.wpilibj.VictorSP;
  * floating around.
  */
 public class RobotMap {
+
+	public static SendableChooser LOCATION_CHOOSER, AUTO_CHOOSER;
 
 	// Drivetrain
 	// declare Drivetrain motors
@@ -54,6 +75,21 @@ public class RobotMap {
 	public static DoubleSolenoid FLIPPER_L, FLIPPER_R;
 
 	public static void init() {
+
+		LOCATION_CHOOSER = new SendableChooser();
+		LOCATION_CHOOSER.addDefault("Left", 'l');
+		LOCATION_CHOOSER.addObject("Middle", 'm');
+		LOCATION_CHOOSER.addObject("Right", 'r');
+		SmartDashboard.putData("Location:", LOCATION_CHOOSER);
+
+		AUTO_CHOOSER = new SendableChooser();
+		AUTO_CHOOSER.addDefault("Do Nothing", "doNothing");
+		AUTO_CHOOSER.addDefault("Auto Line", "autoLine");
+		AUTO_CHOOSER.addObject("Switch", "switch");
+		AUTO_CHOOSER.addObject("Scale", "scale");
+		SmartDashboard.putData("AUTO:", AUTO_CHOOSER);
+		s
+
 		// Initialize Drivetrain motors
 		DRIVETRAIN_MOTOR_FL = new TalonSRX(0);
 		DRIVETRAIN_MOTOR_FL.setInverted(true);
@@ -94,6 +130,65 @@ public class RobotMap {
 
 		FLIPPER_L = new DoubleSolenoid(4, 5);
 		FLIPPER_R = new DoubleSolenoid(6, 7);
+	}
+
+	public static Command getAutoCommand() {
+		char location = (char) LOCATION_CHOOSER.getSelected();
+		String auto = (String) AUTO_CHOOSER.getSelected();
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		char allianceSwitch = gameData.length() > 0 ? gameData.charAt(0) : 0;
+		char scale = gameData.length() > 0 ? gameData.charAt(1) : 0;
+
+		Command autoCommand = null;
+
+		if (auto.equals("doNothing")) {
+			autoCommand = new DoNothing();
+		} else if (auto.equals("autoLine")) {
+			autoCommand = new CrossLine();
+		} else if (auto.equals("switch")) {
+			if (location == 'l') {
+				if (allianceSwitch == 'L') {
+					autoCommand = new LeftToLeftSwitch();
+				} else if (allianceSwitch == 'R') {
+					autoCommand = new LeftToRightSwitch();
+				}
+			} else if (location == 'm') {
+				if (allianceSwitch == 'L') {
+					autoCommand = new MiddleToLeftSwitch();
+				} else if (allianceSwitch == 'R') {
+					autoCommand = new MiddleToRightSwitch();
+				}
+			} else if (location == 'r') {
+				if (allianceSwitch == 'L') {
+					autoCommand = new RightToLeftSwitch();
+				} else if (allianceSwitch == 'R') {
+					autoCommand = new RightToRightSwitch();
+				}
+			}
+		} else if (auto.equals("scale")) {
+			if (location == 'l') {
+				if (allianceSwitch == 'L') {
+					autoCommand = new LeftToLeftScale();
+				} else if (allianceSwitch == 'R') {
+					autoCommand = new LeftToRightScale();
+				}
+			} else if (location == 'm') {
+				if (allianceSwitch == 'L') {
+					autoCommand = new MiddleToLeftScale();
+				} else if (allianceSwitch == 'R') {
+					autoCommand = new MiddleToRightScale();
+				}
+			} else if (location == 'r') {
+				if (allianceSwitch == 'L') {
+					autoCommand = new RightToLeftScale();
+				} else if (allianceSwitch == 'R') {
+					autoCommand = new RightToRightScale();
+				}
+			}
+		}
+
+		return autoCommand;
+
 	}
 
 }

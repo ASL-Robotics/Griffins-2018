@@ -38,7 +38,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
  */
 public class Robot extends TimedRobot {
 	Command autonomousCommand;
-	SendableChooser autoChooser;
+	SendableChooser locationChooser;
 	public static OI m_oi;
 	public static Flipper flipper;
 	public static Climber climber;
@@ -59,11 +59,11 @@ public class Robot extends TimedRobot {
 		climber = new Climber();
 		intake = new Intake();
 		m_oi = new OI();
-		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Default Program - Do Nothing", new DoNothing());
-		autoChooser.addObject("Start Left Side", new CrossLine());
-		autoChooser.addObject("Start Middle", new RightCrossLineMiddle());
-		autoChooser.addObject("Start Right Side", new CrossLineRight());
+		
+		locationChooser = new SendableChooser();
+		locationChooser.addDefault("Left", "Left");
+		locationChooser.addObject("Middle", "Middle");
+		locationChooser.addObject(name, object);
 		
 	}
 
@@ -96,34 +96,9 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		autonomousCommand = (Command) autoChooser.getSelected();
-		 
-		if (gameData.length() > 0) {
-			//scale is on the left
-			if (gameData.charAt(1) == 'L') {
-				//starting at left 
-				if (autonomousCommand == new CrossLine()) 
-					(new LeftToLeftScale()).start(); 
-				//starting at middle 
-				if (autonomousCommand == new RightCrossLineMiddle())
-					(new MiddleToLeftScale()).start(); 
-				//starting at right 
-				if (autonomousCommand == new CrossLineRight())
-					(new RightToLeftScale()).start(); 
-			//scale is on the right
-			} else {
-				//starting at left
-				if (autonomousCommand == new CrossLine())
-					(new LeftToRightScale()).start(); 
-				//starting at middle 
-				if (autonomousCommand == new RightCrossLineMiddle())
-					(new MiddleToRightScale()).start(); 
-				//starting at right 
-				if (autonomousCommand == new CrossLineRight())
-					(new RightToRightScale()).start(); 
-			}
+		autonomousCommand = (Command) RobotMap.getAutoCommand();
+		if(autonomousCommand != null) {
+			autonomousCommand.start();
 		}
 	}
 
