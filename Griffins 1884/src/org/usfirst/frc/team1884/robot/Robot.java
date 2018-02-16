@@ -7,16 +7,16 @@
 
 package org.usfirst.frc.team1884.robot;
 
-import org.usfirst.frc.team1884.robot.commands.autocommands.CrossLineLeft;
+import org.usfirst.frc.team1884.robot.commands.autocommands.CrossLine;
 import org.usfirst.frc.team1884.robot.commands.autocommands.CrossLineRight;
 import org.usfirst.frc.team1884.robot.commands.autocommands.DoNothing;
-import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToLeft;
-import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToRight;
-import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToLeft;
-import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToRight;
+import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToLeftScale;
+import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToRightScale;
+import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToLeftScale;
+import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToRightScale;
 import org.usfirst.frc.team1884.robot.commands.autocommands.RightCrossLineMiddle;
-import org.usfirst.frc.team1884.robot.commands.autocommands.RightToLeft;
-import org.usfirst.frc.team1884.robot.commands.autocommands.RightToRight;
+import org.usfirst.frc.team1884.robot.commands.autocommands.RightToLeftScale;
+import org.usfirst.frc.team1884.robot.commands.autocommands.RightToRightScale;
 import org.usfirst.frc.team1884.robot.subsystems.Climber;
 import org.usfirst.frc.team1884.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Default Program - Do Nothing", new DoNothing());
-		autoChooser.addObject("Start Left Side", new CrossLineLeft());
+		autoChooser.addObject("Start Left Side", new CrossLine());
 		autoChooser.addObject("Start Middle", new RightCrossLineMiddle());
 		autoChooser.addObject("Start Right Side", new CrossLineRight());
 		
@@ -104,25 +104,25 @@ public class Robot extends TimedRobot {
 			//scale is on the left
 			if (gameData.charAt(1) == 'L') {
 				//starting at left 
-				if (autonomousCommand == new CrossLineLeft()) 
-					(new LeftToLeft()).start(); 
+				if (autonomousCommand == new CrossLine()) 
+					(new LeftToLeftScale()).start(); 
 				//starting at middle 
 				if (autonomousCommand == new RightCrossLineMiddle())
-					(new MiddleToLeft()).start(); 
+					(new MiddleToLeftScale()).start(); 
 				//starting at right 
 				if (autonomousCommand == new CrossLineRight())
-					(new RightToLeft()).start(); 
+					(new RightToLeftScale()).start(); 
 			//scale is on the right
 			} else {
 				//starting at left
-				if (autonomousCommand == new CrossLineLeft())
-					(new LeftToRight()).start(); 
+				if (autonomousCommand == new CrossLine())
+					(new LeftToRightScale()).start(); 
 				//starting at middle 
 				if (autonomousCommand == new RightCrossLineMiddle())
-					(new MiddleToRight()).start(); 
+					(new MiddleToRightScale()).start(); 
 				//starting at right 
 				if (autonomousCommand == new CrossLineRight())
-					(new RightToRight()).start(); 
+					(new RightToRightScale()).start(); 
 			}
 		}
 	}

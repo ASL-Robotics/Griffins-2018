@@ -1,22 +1,25 @@
-package org.usfirst.frc.team1884.robot.commands;
+package org.usfirst.frc.team1884.robot.commands.switchprofiles;
 
 import org.usfirst.frc.team1884.robot.Robot;
-import org.usfirst.frc.team1884.robot.subsystems.Elevator;
+import org.usfirst.frc.team1884.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ElevatorLowCommand extends Command {
+public class MotionProfile2G extends Command {
 
-	public ElevatorLowCommand() {
-		requires(Robot.elevator);
+	public MotionProfile2G() {
+		// Use requires() here to declare subsystem dependencies
+		requires(Robot.drivetrain);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.elevator.setHeight(Elevator.Height.LOW);
+		Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfiles.left2G,
+				Drivetrain.RightMotionProfiles.right2G);
+		Robot.drivetrain.enableMotionProfile();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -25,16 +28,17 @@ public class ElevatorLowCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.elevator.isHeight(Elevator.Height.LOW);
+		return Robot.drivetrain.motionProfileIsDone();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.drivetrain.disableMotionProfile();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		end();
 	}
-
 }

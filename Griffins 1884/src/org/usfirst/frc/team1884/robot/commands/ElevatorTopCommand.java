@@ -14,8 +14,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ElevatorTopCommand extends Command {
 
 	public ElevatorTopCommand() {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 		requires(Robot.elevator);
 	}
 
@@ -30,12 +28,11 @@ public class ElevatorTopCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.elevator.isAtPosition(Elevator.Height.HIGH, 20); 
+		return Robot.elevator.isHeight(Elevator.Height.HIGH); 
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.elevator.stopElevator();
 	}
 
 	// Called when another command which requires one or more of the same

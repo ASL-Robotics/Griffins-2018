@@ -11,16 +11,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-	
+
 	public static class Height {
-		public static final int LOW = 6, MIDDLE_LOW = 7, MIDDLE_HIGH = 8, HIGH = 9;
+		public static final int LOW = 6, MIDDLE = 7, HIGH = 8;
 	}
-	
-	public Elevator () {
-		//TODO change the kPID values to real ones 
-		RobotMap.ELEVATOR_MOTOR.config_kP(0, 10, 10);
-		RobotMap.ELEVATOR_MOTOR.config_kI(0, 10, 10);
-		RobotMap.ELEVATOR_MOTOR.config_kD(0, 10, 10);
+
+	public Elevator() {
+		// TODO change the kPID values to real ones
+		RobotMap.ELEVATOR_MOTOR.config_kP(0, 0, 10);
+		RobotMap.ELEVATOR_MOTOR.config_kI(0, 0, 10);
+		RobotMap.ELEVATOR_MOTOR.config_kD(0, 0, 10);
 	}
 
 	public void initDefaultCommand() {
@@ -28,9 +28,28 @@ public class Elevator extends Subsystem {
 	}
 
 	public void setHeight(int height) {
-		
+		RobotMap.ELEVATOR_MOTOR.set(ControlMode.Position, height);
+
 	}
 
+	public void stopElevator() {
+		RobotMap.ELEVATOR_MOTOR.set(ControlMode.PercentOutput, 0);
+	}
+
+	public boolean isBottom() {
+		return RobotMap.ELEVATOR_SWITCH.get();
+	}
+
+	public boolean isHeight(int height) {
+		return (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) < height - 20)
+				&& (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) > height - 20);
+
+	}
+
+	public void resetEncoder() {
+		RobotMap.ELEVATOR_MOTOR.setSelectedSensorPosition(0,0,10);
+	}
+	
 	public void toggleClaw() {
 		if (RobotMap.ELEVATOR_PISTON.get() == DoubleSolenoid.Value.kReverse) {
 			RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kForward);
@@ -38,16 +57,5 @@ public class Elevator extends Subsystem {
 			RobotMap.ELEVATOR_PISTON.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
-	
-	public void stopElevator() {
-		RobotMap.ELEVATOR_MOTOR.set(ControlMode.PercentOutput, 0, 0);
-	}
-	
-	public boolean isAtPosition (int position, int variance) {
-		if (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) >= (position - variance)
-				&& (RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0) <= (position + variance))) {
-			return true;
-		}
-		return false;
-	}
+
 }
