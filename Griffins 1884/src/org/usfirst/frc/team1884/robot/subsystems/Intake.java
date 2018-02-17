@@ -20,14 +20,22 @@ public class Intake extends Subsystem {
 		RobotMap.INTAKE_MOTOR_R.set(-1);
 	}
 
-	public void toggleIntake() {
-		if (RobotMap.INTAKE_PISTON.get() == DoubleSolenoid.Value.kReverse) {
-			RobotMap.INTAKE_PISTON.set(DoubleSolenoid.Value.kForward);
+	public void toggleHorizontalIntake() {
+		if (RobotMap.INTAKE_HORIZONTAL_PISTON.get() == DoubleSolenoid.Value.kReverse) {
+			RobotMap.INTAKE_HORIZONTAL_PISTON.set(DoubleSolenoid.Value.kForward);
 		} else {
-			RobotMap.INTAKE_PISTON.set(DoubleSolenoid.Value.kReverse);
+			RobotMap.INTAKE_HORIZONTAL_PISTON.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
 
+	public void toggleVerticalIntake() {
+		if (RobotMap.INTAKE_VERTICAL_PISTON.get() == DoubleSolenoid.Value.kReverse) {
+			RobotMap.INTAKE_VERTICAL_PISTON.set(DoubleSolenoid.Value.kForward);
+		} else {
+			RobotMap.INTAKE_VERTICAL_PISTON.set(DoubleSolenoid.Value.kReverse);
+		}
+	}
+	
 	public void outtake() {
 		RobotMap.INTAKE_MOTOR_L.set(-1);
 		RobotMap.INTAKE_MOTOR_R.set(1);

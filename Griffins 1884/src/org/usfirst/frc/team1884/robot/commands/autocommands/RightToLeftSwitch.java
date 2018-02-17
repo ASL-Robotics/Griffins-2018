@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot.commands.autocommands;
 
-import org.usfirst.frc.team1884.robot.commands.FlipperLeftCommand;
+import org.usfirst.frc.team1884.robot.commands.FlipperRightCommand;
 import org.usfirst.frc.team1884.robot.commands.switchprofiles.MotionProfile3I;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

@@ -12,7 +12,7 @@ import org.usfirst.frc.team1884.robot.commands.ClimberDeployCommand;
 import org.usfirst.frc.team1884.robot.commands.FlipperLeftCommand;
 import org.usfirst.frc.team1884.robot.commands.FlipperRightCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeInCommand;
-import org.usfirst.frc.team1884.robot.commands.IntakePistonCommand;
+import org.usfirst.frc.team1884.robot.commands.IntakeHorizontalPistonCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeOutCommand;
 import org.usfirst.frc.team1884.robot.util.XBox;
 
@@ -33,7 +33,7 @@ public class OI {
 		//intake commands
 		operator.getYButton().whileHeld(new IntakeInCommand());
 		operator.getAButton().whileHeld(new IntakeOutCommand());
-		operator.getLeftStick().whenPressed(new IntakePistonCommand());
+		operator.getLeftStick().whenPressed(new IntakeHorizontalPistonCommand());
 		
 		//climb commands 
 		operator.getNorth().whileHeld(new ClimberClimbCommand());

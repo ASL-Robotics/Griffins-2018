@@ -2,7 +2,6 @@ package org.usfirst.frc.team1884.robot.subsystems;
 
 import org.usfirst.frc.team1884.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -19,19 +18,19 @@ public class Flipper extends Subsystem {
 	}
 
 	public void toggleLeft() {
-		if (RobotMap.FLIPPER_L.get() == DoubleSolenoid.Value.kReverse) {
-			RobotMap.FLIPPER_L.set(DoubleSolenoid.Value.kForward);
+		if (RobotMap.FLIPPER_L.get()) {
+			RobotMap.FLIPPER_L.set(false);
 		} else {
-			RobotMap.FLIPPER_R.set(DoubleSolenoid.Value.kReverse);
+			RobotMap.FLIPPER_R.set(true);
 		}
 
 	}
 
 	public void toggleRight() {
-		if (RobotMap.FLIPPER_R.get() == DoubleSolenoid.Value.kReverse) {
-			RobotMap.FLIPPER_R.set(DoubleSolenoid.Value.kForward);
+		if (RobotMap.FLIPPER_R.get()) {
+			RobotMap.FLIPPER_R.set(false);
 		} else {
-			RobotMap.FLIPPER_R.set(DoubleSolenoid.Value.kReverse);
+			RobotMap.FLIPPER_R.set(true);
 		}
 	}
 }

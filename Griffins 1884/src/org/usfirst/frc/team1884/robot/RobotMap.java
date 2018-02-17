@@ -29,6 +29,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -53,7 +54,7 @@ public class RobotMap {
 	public static VictorSP INTAKE_MOTOR_L, INTAKE_MOTOR_R;
 
 	// declare Intake solenoid
-	public static DoubleSolenoid INTAKE_PISTON;
+	public static DoubleSolenoid INTAKE_HORIZONTAL_PISTON, INTAKE_VERTICAL_PISTON;
 
 	// Elevator
 	// Declare + initialize Elevator motor
@@ -72,7 +73,7 @@ public class RobotMap {
 
 	// Flipper
 	// declare + initialize Flipper solenoids
-	public static DoubleSolenoid FLIPPER_L, FLIPPER_R;
+	public static Solenoid FLIPPER_L, FLIPPER_R;
 
 	public static void init() {
 
@@ -88,48 +89,50 @@ public class RobotMap {
 		AUTO_CHOOSER.addObject("Switch", "switch");
 		AUTO_CHOOSER.addObject("Scale", "scale");
 		SmartDashboard.putData("AUTO:", AUTO_CHOOSER);
-		s
 
 		// Initialize Drivetrain motors
 		DRIVETRAIN_MOTOR_FL = new TalonSRX(0);
 		DRIVETRAIN_MOTOR_FL.setInverted(true);
-		DRIVETRAIN_MOTOR_FL.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		DRIVETRAIN_MOTOR_FL.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 		DRIVETRAIN_MOTOR_FL.setSensorPhase(true);
-		DRIVETRAIN_MOTOR_FL.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms, 0);
-		DRIVETRAIN_MOTOR_FL.configVelocityMeasurementWindow(1, 0);
+		DRIVETRAIN_MOTOR_FL.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms, 10);
+		DRIVETRAIN_MOTOR_FL.configVelocityMeasurementWindow(1, 10);
 		DRIVETRAIN_MOTOR_FL.changeMotionControlFramePeriod(4);
+		DRIVETRAIN_MOTOR_FL.configNeutralDeadband(0.001, 10);
 		DRIVETRAIN_MOTOR_BL = new TalonSRX(1);
 		DRIVETRAIN_MOTOR_BL.setInverted(true);
+		DRIVETRAIN_MOTOR_BL.configNeutralDeadband(0.001, 10);
 		DRIVETRAIN_MOTOR_BL.follow(DRIVETRAIN_MOTOR_FL);
 
 		DRIVETRAIN_MOTOR_FR = new TalonSRX(2);
-		// DRIVETRAIN_MOTOR_FR.setInverted(true);
-		DRIVETRAIN_MOTOR_FR.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		DRIVETRAIN_MOTOR_FR.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 		DRIVETRAIN_MOTOR_FR.setSensorPhase(true);
-		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms, 0);
-		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementWindow(1, 0);
-		DRIVETRAIN_MOTOR_FL.changeMotionControlFramePeriod(4);
+		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms, 10);
+		DRIVETRAIN_MOTOR_FR.configVelocityMeasurementWindow(1, 10);
+		DRIVETRAIN_MOTOR_FR.changeMotionControlFramePeriod(4);
+		DRIVETRAIN_MOTOR_FR.configNeutralDeadband(0.001, 10);
 		DRIVETRAIN_MOTOR_BR = new TalonSRX(3);
-		// DRIVETRAIN_MOTOR_BR.setInverted(true);
+		DRIVETRAIN_MOTOR_BR.configNeutralDeadband(0.001, 10);
 		DRIVETRAIN_MOTOR_BR.follow(DRIVETRAIN_MOTOR_FR);
 
 		INTAKE_MOTOR_L = new VictorSP(0);
 		INTAKE_MOTOR_R = new VictorSP(1);
 
-		INTAKE_PISTON = new DoubleSolenoid(0, 1);
+		INTAKE_HORIZONTAL_PISTON = new DoubleSolenoid(0, 1);
+		INTAKE_VERTICAL_PISTON = new DoubleSolenoid(2,3);
 
 		ELEVATOR_MOTOR = new TalonSRX(4);
 		ELEVATOR_MOTOR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 
-		ELEVATOR_PISTON = new DoubleSolenoid(2, 3);
+		ELEVATOR_PISTON = new DoubleSolenoid(4, 5);
 
 		ELEVATOR_SWITCH = new DigitalInput(0);
 
 		CLIMBER_CLIMB_MOTOR = new VictorSP(2);
 		CLIMBER_DEPLOY_MOTOR = new VictorSP(3);
 
-		FLIPPER_L = new DoubleSolenoid(4, 5);
-		FLIPPER_R = new DoubleSolenoid(6, 7);
+		FLIPPER_L = new Solenoid(6);
+		FLIPPER_R = new Solenoid(7);
 	}
 
 	public static Command getAutoCommand() {
@@ -167,18 +170,18 @@ public class RobotMap {
 			}
 		} else if (auto.equals("scale")) {
 			if (location == 'l') {
-				if (allianceSwitch == 'L') {
+				if (scale == 'L') {
 					autoCommand = new LeftToLeftScale();
 				} else if (allianceSwitch == 'R') {
 					autoCommand = new LeftToRightScale();
 				}
-			} else if (location == 'm') {
+			} else if (scale == 'm') {
 				if (allianceSwitch == 'L') {
 					autoCommand = new MiddleToLeftScale();
 				} else if (allianceSwitch == 'R') {
 					autoCommand = new MiddleToRightScale();
 				}
-			} else if (location == 'r') {
+			} else if (scale == 'r') {
 				if (allianceSwitch == 'L') {
 					autoCommand = new RightToLeftScale();
 				} else if (allianceSwitch == 'R') {

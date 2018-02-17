@@ -8,26 +8,15 @@
 package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.commands.autocommands.CrossLine;
-import org.usfirst.frc.team1884.robot.commands.autocommands.CrossLineRight;
-import org.usfirst.frc.team1884.robot.commands.autocommands.DoNothing;
-import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToLeftScale;
-import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToRightScale;
-import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToLeftScale;
-import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToRightScale;
-import org.usfirst.frc.team1884.robot.commands.autocommands.RightCrossLineMiddle;
-import org.usfirst.frc.team1884.robot.commands.autocommands.RightToLeftScale;
-import org.usfirst.frc.team1884.robot.commands.autocommands.RightToRightScale;
 import org.usfirst.frc.team1884.robot.subsystems.Climber;
 import org.usfirst.frc.team1884.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Flipper;
 import org.usfirst.frc.team1884.robot.subsystems.Intake;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -38,7 +27,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
  */
 public class Robot extends TimedRobot {
 	Command autonomousCommand;
-	SendableChooser locationChooser;
 	public static OI m_oi;
 	public static Flipper flipper;
 	public static Climber climber;
@@ -59,12 +47,6 @@ public class Robot extends TimedRobot {
 		climber = new Climber();
 		intake = new Intake();
 		m_oi = new OI();
-		
-		locationChooser = new SendableChooser();
-		locationChooser.addDefault("Left", "Left");
-		locationChooser.addObject("Middle", "Middle");
-		locationChooser.addObject(name, object);
-		
 	}
 
 	/**
@@ -96,10 +78,11 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = (Command) RobotMap.getAutoCommand();
+		/*autonomousCommand = (Command) RobotMap.getAutoCommand();
 		if(autonomousCommand != null) {
 			autonomousCommand.start();
-		}
+		}*/
+		(new CrossLine()).start();
 	}
 
 	/**
