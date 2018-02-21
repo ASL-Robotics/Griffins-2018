@@ -1,10 +1,7 @@
 package org.usfirst.frc.team1884.robot.commands;
 
 import org.usfirst.frc.team1884.robot.Robot;
-import org.usfirst.frc.team1884.robot.RobotMap;
-import org.usfirst.frc.team1884.robot.subsystems.Elevator;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
+import org.usfirst.frc.team1884.robot.subsystems.ElevatorShaft;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -14,12 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ElevatorTopCommand extends Command {
 
 	public ElevatorTopCommand() {
-		requires(Robot.elevator);
+		requires(Robot.elevatorShaft);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.elevator.setHeight(Elevator.Height.HIGH);
+		Robot.elevatorShaft.setHeight(ElevatorShaft.Height.HIGH);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -28,7 +25,7 @@ public class ElevatorTopCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.elevator.isHeight(Elevator.Height.HIGH); 
+		return false;
 	}
 
 	// Called once after isFinished returns true

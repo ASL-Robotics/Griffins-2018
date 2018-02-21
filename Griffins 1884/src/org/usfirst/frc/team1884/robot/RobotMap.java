@@ -54,7 +54,8 @@ public class RobotMap {
 	public static VictorSP INTAKE_MOTOR_L, INTAKE_MOTOR_R;
 
 	// declare Intake solenoid
-	public static DoubleSolenoid INTAKE_HORIZONTAL_PISTON, INTAKE_VERTICAL_PISTON;
+	public static DoubleSolenoid INTAKE_HORIZONTAL_PISTON_LEFT, INTAKE_VERTICAL_PISTON;
+	public static Solenoid INTAKE_HORIZONTAL_PISTON_RIGHT_FORWARD, INTAKE_HORIZONTAL_PISTON_RIGHT_REVERSE;
 
 	// Elevator
 	// Declare + initialize Elevator motor
@@ -66,7 +67,7 @@ public class RobotMap {
 
 	// Climber
 	// declare + initialize Climber motor
-	public static VictorSP CLIMBER_CLIMB_MOTOR;
+	public static VictorSP CLIMBER_CLIMB_MOTOR1,CLIMBER_CLIMB_MOTOR2,CLIMBER_CLIMB_MOTOR3;
 
 	// declare + initialize Climber piston
 	public static VictorSP CLIMBER_DEPLOY_MOTOR;
@@ -118,21 +119,31 @@ public class RobotMap {
 		INTAKE_MOTOR_L = new VictorSP(0);
 		INTAKE_MOTOR_R = new VictorSP(1);
 
-		INTAKE_HORIZONTAL_PISTON = new DoubleSolenoid(0, 1);
-		INTAKE_VERTICAL_PISTON = new DoubleSolenoid(2,3);
-
+		INTAKE_VERTICAL_PISTON = new DoubleSolenoid(0, 1);
+		INTAKE_VERTICAL_PISTON.set(DoubleSolenoid.Value.kReverse);
+		INTAKE_HORIZONTAL_PISTON_LEFT = new DoubleSolenoid(2, 3);
+		INTAKE_HORIZONTAL_PISTON_LEFT.set(DoubleSolenoid.Value.kForward);
+		INTAKE_HORIZONTAL_PISTON_RIGHT_FORWARD = new Solenoid(6);
+		INTAKE_HORIZONTAL_PISTON_RIGHT_REVERSE = new Solenoid(7);
+		INTAKE_HORIZONTAL_PISTON_RIGHT_FORWARD.set(true);
+		INTAKE_HORIZONTAL_PISTON_RIGHT_REVERSE.set(false);
+		
+		
 		ELEVATOR_MOTOR = new TalonSRX(4);
 		ELEVATOR_MOTOR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		ELEVATOR_MOTOR.setSensorPhase(true);
+		ELEVATOR_MOTOR.setInverted(true);
+		ELEVATOR_MOTOR.setSelectedSensorPosition(0, 0, 10);
 
 		ELEVATOR_PISTON = new DoubleSolenoid(4, 5);
 
 		ELEVATOR_SWITCH = new DigitalInput(0);
 
-		CLIMBER_CLIMB_MOTOR = new VictorSP(2);
-		CLIMBER_DEPLOY_MOTOR = new VictorSP(3);
-
-		FLIPPER_L = new Solenoid(6);
-		FLIPPER_R = new Solenoid(7);
+		CLIMBER_DEPLOY_MOTOR = new VictorSP(2);
+		
+		CLIMBER_CLIMB_MOTOR1 = new VictorSP(3);
+		CLIMBER_CLIMB_MOTOR2 = new VictorSP(4);
+		CLIMBER_CLIMB_MOTOR3 = new VictorSP(5);
 	}
 
 	public static Command getAutoCommand() {

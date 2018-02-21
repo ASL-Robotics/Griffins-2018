@@ -10,9 +10,11 @@ package org.usfirst.frc.team1884.robot;
 import org.usfirst.frc.team1884.robot.commands.autocommands.CrossLine;
 import org.usfirst.frc.team1884.robot.subsystems.Climber;
 import org.usfirst.frc.team1884.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team1884.robot.subsystems.Elevator;
+import org.usfirst.frc.team1884.robot.subsystems.ElevatorClaw;
+import org.usfirst.frc.team1884.robot.subsystems.ElevatorShaft;
 import org.usfirst.frc.team1884.robot.subsystems.Flipper;
-import org.usfirst.frc.team1884.robot.subsystems.Intake;
+import org.usfirst.frc.team1884.robot.subsystems.IntakeMotor;
+import org.usfirst.frc.team1884.robot.subsystems.IntakePiston;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -30,9 +32,11 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 	public static Flipper flipper;
 	public static Climber climber;
-	public static Intake intake;
+	public static IntakeMotor intakeMotor;
+	public static IntakePiston intakePiston;
 	public static Drivetrain drivetrain;
-	public static Elevator elevator;
+	public static ElevatorShaft elevatorShaft;
+	public static ElevatorClaw elevatorClaw;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -42,10 +46,12 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		RobotMap.init();
 		drivetrain = new Drivetrain();
-		elevator = new Elevator();
+		elevatorShaft = new ElevatorShaft();
+		elevatorClaw = new ElevatorClaw();
 		flipper = new Flipper();
 		climber = new Climber();
-		intake = new Intake();
+		intakeMotor = new IntakeMotor();
+		intakePiston = new IntakePiston();
 		m_oi = new OI();
 	}
 

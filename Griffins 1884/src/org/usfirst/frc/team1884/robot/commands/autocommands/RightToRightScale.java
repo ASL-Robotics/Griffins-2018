@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1884.robot.commands.autocommands;
 
 import org.usfirst.frc.team1884.robot.commands.ElevatorBottomCommand;
-import org.usfirst.frc.team1884.robot.commands.ElevatorClawCommand;
+import org.usfirst.frc.team1884.robot.commands.ElevatorOpenClawCommand;
 import org.usfirst.frc.team1884.robot.commands.ElevatorTopCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeInCommand;
 import org.usfirst.frc.team1884.robot.commands.scaleprofiles.MotionProfile3D;
@@ -27,7 +27,7 @@ public class RightToRightScale extends CommandGroup {
 		addSequential(new MotionProfileScaleForward());
 
 		// opens claw - releasing cube
-		addSequential(new ElevatorClawCommand());
+		addSequential(new ElevatorOpenClawCommand());
 		addSequential(new MotionProfileScaleBackward());
 		addSequential(new ElevatorBottomCommand());
 
@@ -38,7 +38,7 @@ public class RightToRightScale extends CommandGroup {
 		// pick up cube
 		addSequential(new IntakeInCommand());
 		// closes claw
-		addSequential(new ElevatorClawCommand());
+		addSequential(new ElevatorOpenClawCommand());
 
 		// go to scale
 		addSequential(new MotionProfileRot180());
@@ -47,7 +47,7 @@ public class RightToRightScale extends CommandGroup {
 		// put cube on scale
 		addSequential(new ElevatorTopCommand());
 		addSequential(new MotionProfileScaleForward());
-		addSequential(new ElevatorClawCommand());
+		addSequential(new ElevatorOpenClawCommand());
 
 	}
 }

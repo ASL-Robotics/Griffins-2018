@@ -29,9 +29,9 @@ public class Drivetrain extends Subsystem {
 		notifier = new Notifier(new PeriodicRunnable());
 
 		RobotMap.DRIVETRAIN_MOTOR_FL.config_kF(0, 0.623, 10);
-		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FL.config_kP(0, 0, 10));
+		RobotMap.DRIVETRAIN_MOTOR_FL.config_kP(0, 0.100, 10);
 		RobotMap.DRIVETRAIN_MOTOR_FR.config_kF(0, 0.623, 10);
-		System.out.println(RobotMap.DRIVETRAIN_MOTOR_FR.config_kP(0, 0, 10));
+		RobotMap.DRIVETRAIN_MOTOR_FR.config_kP(0, 0.100, 10);
 	}
 
 	public void initDefaultCommand() {

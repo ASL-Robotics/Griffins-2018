@@ -1,23 +1,25 @@
 package org.usfirst.frc.team1884.robot.commands;
 
 import org.usfirst.frc.team1884.robot.Robot;
-import org.usfirst.frc.team1884.robot.subsystems.ElevatorShaft;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ElevatorMiddleCommand extends Command {
+public class IntakeUpCommand extends Command {
 
-	public ElevatorMiddleCommand() {
-		requires(Robot.elevatorShaft);
-		
+	public IntakeUpCommand() {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		requires(Robot.intakePiston);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.elevatorShaft.setHeight(ElevatorShaft.Height.MIDDLE);
+		if (Robot.elevatorShaft.isBottom()) {
+			Robot.intakePiston.up();
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -26,7 +28,7 @@ public class ElevatorMiddleCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true

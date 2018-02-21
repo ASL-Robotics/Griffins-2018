@@ -12,12 +12,12 @@ public class IntakeOutCommand extends Command {
 	public IntakeOutCommand() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.intake);
+		requires(Robot.intakeMotor);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.intake.outtake();
+		Robot.intakeMotor.outtake();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -31,7 +31,7 @@ public class IntakeOutCommand extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.intake.off();
+		Robot.intakeMotor.off();
 	}
 
 	// Called when another command which requires one or more of the same

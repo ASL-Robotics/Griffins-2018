@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeHorizontalPistonCommand extends Command {
+public class ElevatorCloseClawCommand extends Command {
 
-    public IntakeHorizontalPistonCommand() {
+    public ElevatorCloseClawCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    		requires(Robot.intakePiston); 
+    		requires(Robot.elevatorClaw); 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    		Robot.intakePiston.toggleHorizontal();
+    		Robot.elevatorClaw.close(); 
     }
 
     // Called repeatedly when this Command is scheduled to run

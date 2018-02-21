@@ -12,13 +12,12 @@ public class IntakeInCommand extends Command {
 	public IntakeInCommand() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.intake);
-		setTimeout(2000);
+		requires(Robot.intakeMotor);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.intake.intake();
+		Robot.intakeMotor.intake();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -27,12 +26,12 @@ public class IntakeInCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.intake.off();
+		Robot.intakeMotor.off();
 	}
 
 	// Called when another command which requires one or more of the same
