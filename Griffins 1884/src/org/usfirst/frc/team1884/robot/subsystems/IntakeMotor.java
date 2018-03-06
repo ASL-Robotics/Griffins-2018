@@ -15,7 +15,7 @@ public class IntakeMotor extends Subsystem {
 	}
 
 	public void intake() {
-		RobotMap.INTAKE_MOTOR_L.set(1);
+		RobotMap.INTAKE_MOTOR_L.set(0.9);
 		RobotMap.INTAKE_MOTOR_R.set(-0.9);
 	}
 	

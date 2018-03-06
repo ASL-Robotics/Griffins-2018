@@ -21,9 +21,9 @@ public class ElevatorTestCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevatorShaft.joystickControl(Robot.m_oi.operator.getLeftY());
-    	System.out.println(Robot.m_oi.operator.getLeftY());
-    	System.out.println(RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0));
+    	/*Robot.elevatorShaft.joystickControl(Robot.m_oi.operator.getLeftY());
+    	System.out.println(Robot.m_oi.operator b.getLeftY());
+    	System.out.println(RobotMap.ELEVATOR_MOTOR.getSelectedSensorPosition(0));*/
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -13,9 +13,7 @@ import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToLeftScale;
 import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToLeftSwitch;
 import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToRightScale;
 import org.usfirst.frc.team1884.robot.commands.autocommands.LeftToRightSwitch;
-import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToLeftScale;
 import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToLeftSwitch;
-import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToRightScale;
 import org.usfirst.frc.team1884.robot.commands.autocommands.MiddleToRightSwitch;
 import org.usfirst.frc.team1884.robot.commands.autocommands.RightToLeftScale;
 import org.usfirst.frc.team1884.robot.commands.autocommands.RightToLeftSwitch;
@@ -26,9 +24,12 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Command;
@@ -43,7 +44,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RobotMap {
 
+	
 	public static SendableChooser LOCATION_CHOOSER, AUTO_CHOOSER;
+	
+	//public static PowerDistributionPanel
 
 	// Drivetrain
 	// declare Drivetrain motors
@@ -61,7 +65,7 @@ public class RobotMap {
 	// Declare + initialize Elevator motor
 	public static TalonSRX ELEVATOR_MOTOR;
 
-	public static DoubleSolenoid ELEVATOR_PISTON;
+	public static VictorSP ELEVATOR_CLAW_MOTOR_L, ELEVATOR_CLAW_MOTOR_R;
 
 	public static DigitalInput ELEVATOR_SWITCH;
 
@@ -71,13 +75,14 @@ public class RobotMap {
 
 	// declare + initialize Climber piston
 	public static VictorSP CLIMBER_DEPLOY_MOTOR;
-
-	// Flipper
-	// declare + initialize Flipper solenoids
-	public static Solenoid FLIPPER_L, FLIPPER_R;
+	
+	public static PowerDistributionPanel PDP;
+	public static Compressor COMPRESSOR;
 
 	public static void init() {
-
+		
+		CameraServer.getInstance().startAutomaticCapture();
+		
 		LOCATION_CHOOSER = new SendableChooser();
 		LOCATION_CHOOSER.addDefault("Left", 'l');
 		LOCATION_CHOOSER.addObject("Middle", 'm');
@@ -122,20 +127,20 @@ public class RobotMap {
 		INTAKE_VERTICAL_PISTON = new DoubleSolenoid(0, 1);
 		INTAKE_VERTICAL_PISTON.set(DoubleSolenoid.Value.kReverse);
 		INTAKE_HORIZONTAL_PISTON_LEFT = new DoubleSolenoid(2, 3);
-		INTAKE_HORIZONTAL_PISTON_LEFT.set(DoubleSolenoid.Value.kForward);
+		INTAKE_HORIZONTAL_PISTON_LEFT.set(DoubleSolenoid.Value.kReverse);
 		INTAKE_HORIZONTAL_PISTON_RIGHT_FORWARD = new Solenoid(6);
 		INTAKE_HORIZONTAL_PISTON_RIGHT_REVERSE = new Solenoid(7);
-		INTAKE_HORIZONTAL_PISTON_RIGHT_FORWARD.set(true);
-		INTAKE_HORIZONTAL_PISTON_RIGHT_REVERSE.set(false);
-		
+		INTAKE_HORIZONTAL_PISTON_RIGHT_FORWARD.set(false);
+		INTAKE_HORIZONTAL_PISTON_RIGHT_REVERSE.set(true);
 		
 		ELEVATOR_MOTOR = new TalonSRX(4);
 		ELEVATOR_MOTOR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		ELEVATOR_MOTOR.setSensorPhase(true);
 		ELEVATOR_MOTOR.setInverted(true);
 		ELEVATOR_MOTOR.setSelectedSensorPosition(0, 0, 10);
-
-		ELEVATOR_PISTON = new DoubleSolenoid(4, 5);
+		
+		ELEVATOR_CLAW_MOTOR_L = new VictorSP(6);
+		ELEVATOR_CLAW_MOTOR_R = new VictorSP(7);
 
 		ELEVATOR_SWITCH = new DigitalInput(0);
 
@@ -185,12 +190,6 @@ public class RobotMap {
 					autoCommand = new LeftToLeftScale();
 				} else if (allianceSwitch == 'R') {
 					autoCommand = new LeftToRightScale();
-				}
-			} else if (scale == 'm') {
-				if (allianceSwitch == 'L') {
-					autoCommand = new MiddleToLeftScale();
-				} else if (allianceSwitch == 'R') {
-					autoCommand = new MiddleToRightScale();
 				}
 			} else if (scale == 'r') {
 				if (allianceSwitch == 'L') {

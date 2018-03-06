@@ -17,7 +17,8 @@ public class RedVelvetStreet {
 				Trajectory.Config.SAMPLES_HIGH, 0.01, MAX_VELOCITY, MAX_ACCELERATION, MAX_JERK);
 
 		// Path 1L
-		Waypoint[] points1L = new Waypoint[] { new Waypoint(0.495, 7.028, 0), new Waypoint(4.267, 6.480, 0) };
+		Waypoint[] points1L = new Waypoint[] { new Waypoint(0.495, 7.028, 0), new Waypoint(3.556, 7.028, 0),
+				new Waypoint(4.267, 6.544, -Math.PI / 2) };
 
 		Trajectory trajectory1L = Pathfinder.generate(points1L, config);
 
@@ -33,8 +34,9 @@ public class RedVelvetStreet {
 
 		// Path 1J
 
-		Waypoint[] points1J = new Waypoint[] { new Waypoint(0.495, 7.028, 00), new Waypoint(4.267, 7.028, 0),
-				new Waypoint(5.810, 4.107, 3 * Math.PI / 2), new Waypoint(5.401, 2.661, 3 * Math.PI / 2) };
+		Waypoint[] points1J = new Waypoint[] { new Waypoint(0.495, 7.028, 0), new Waypoint(4.267, 7.028, 0),
+				new Waypoint(5.810, 4.107, 3 * Math.PI / 2), new Waypoint(5.810, 3.352, Math.PI / 2),
+				new Waypoint(5.474, 2.597, Math.PI) };
 
 		Trajectory trajectory1J = Pathfinder.generate(points1J, config);
 
@@ -50,8 +52,7 @@ public class RedVelvetStreet {
 
 		// Path 2G
 
-		Waypoint[] points2G = new Waypoint[] { new Waypoint(0.495, 3.980, 0), new Waypoint(2.489, 5.110, 0),
-				new Waypoint(3.124, 5.553, Math.PI / 2) };
+		Waypoint[] points2G = new Waypoint[] { new Waypoint(0.495, 3.980, 0), new Waypoint(3.061, 5.617, 0) };
 
 		Trajectory trajectory2G = Pathfinder.generate(points2G, config);
 
@@ -67,8 +68,7 @@ public class RedVelvetStreet {
 
 		// Path 2H
 
-		Waypoint[] points2H = new Waypoint[] { new Waypoint(0.495, 3.980, 0), new Waypoint(2.489, 3.104, 0),
-				new Waypoint(3.124, 2.661, 3 * Math.PI / 2) };
+		Waypoint[] points2H = new Waypoint[] { new Waypoint(0.495, 3.980, 0), new Waypoint(3.061, 2.597, 0) };
 
 		Trajectory trajectory2H = Pathfinder.generate(points2H, config);
 
@@ -84,7 +84,8 @@ public class RedVelvetStreet {
 
 		// Path 3I
 
-		Waypoint[] points3I = new Waypoint[] { new Waypoint(0.495, 1.186, 0), new Waypoint(4.267, 1.734, 0) };
+		Waypoint[] points3I = new Waypoint[] { new Waypoint(0.495, 1.186, 0), new Waypoint(3.556, 1.186, 0),
+				new Waypoint(4.267, 1.670, Math.PI / 2) };
 
 		Trajectory trajectory3I = Pathfinder.generate(points3I, config);
 
@@ -101,7 +102,8 @@ public class RedVelvetStreet {
 		// Path 3K
 
 		Waypoint[] points3K = new Waypoint[] { new Waypoint(0.495, 1.186, 0), new Waypoint(4.267, 1.186, 0),
-				new Waypoint(5.810, 4.107, Math.PI / 2), new Waypoint(5.401, 5.553, Math.PI / 2) };
+				new Waypoint(5.810, 4.107, Math.PI / 2), new Waypoint(5.810, 4.862, Math.PI / 2),
+				new Waypoint(5.401, 5.617, Math.PI) };
 
 		Trajectory trajectory3K = Pathfinder.generate(points3K, config);
 

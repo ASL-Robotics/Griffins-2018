@@ -18,8 +18,8 @@ public class MotionProfileScaleForward extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesB.leftScaleForward,
-    			Drivetrain.RightMotionProfilesB.rightScaleForward);
+    	Robot.drivetrain.initializeMotionProfile(Drivetrain.LeftMotionProfilesScale.leftScaleForward,
+    			Drivetrain.RightMotionProfilesScale.rightScaleForward);
     			Robot.drivetrain.enableMotionProfile();
     }
 

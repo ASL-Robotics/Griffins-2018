@@ -10,18 +10,18 @@ package org.usfirst.frc.team1884.robot;
 import org.usfirst.frc.team1884.robot.commands.ClimberClimbCommand;
 import org.usfirst.frc.team1884.robot.commands.ClimberDeployCommand;
 import org.usfirst.frc.team1884.robot.commands.ClimberReverseDeployCommand;
-import org.usfirst.frc.team1884.robot.commands.ElevatorBottomCommand;
-import org.usfirst.frc.team1884.robot.commands.ElevatorCloseClawCommand;
-import org.usfirst.frc.team1884.robot.commands.ElevatorLowCommand;
-import org.usfirst.frc.team1884.robot.commands.ElevatorMiddleCommand;
-import org.usfirst.frc.team1884.robot.commands.ElevatorOpenClawCommand;
-import org.usfirst.frc.team1884.robot.commands.ElevatorTopCommand;
+import org.usfirst.frc.team1884.robot.commands.ElevatorIntakeCommand;
+import org.usfirst.frc.team1884.robot.commands.ElevatorOuttakeCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeDownCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeHorizontalPistonCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeInCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeOutCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeSpinCommand;
 import org.usfirst.frc.team1884.robot.commands.IntakeUpCommand;
+import org.usfirst.frc.team1884.robot.commands.sequences.ElevatorBottomSequence;
+import org.usfirst.frc.team1884.robot.commands.sequences.ElevatorScaleSequence;
+import org.usfirst.frc.team1884.robot.commands.sequences.ElevatorSwitchSequence;
+import org.usfirst.frc.team1884.robot.commands.sequences.IntakeSequence;
 import org.usfirst.frc.team1884.robot.util.XBox;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
@@ -41,7 +41,7 @@ public class OI {
 		operator = new XBox(1);
 
 		// intake commands
-		(new RightXLeft(operator)).whileActive(new IntakeInCommand());
+		(new RightXLeft(operator)).whileActive(new IntakeSequence());
 		(new RightXRight(operator)).whileActive(new IntakeOutCommand());
 		(new RightYUp(operator)).whenActive(new IntakeUpCommand());
 		(new RightYDown(operator)).whenActive(new IntakeDownCommand());
@@ -49,12 +49,10 @@ public class OI {
 		operator.getRightStick().whileHeld(new IntakeSpinCommand());
 
 		// elevator commands
-		operator.getRightBumper().whenPressed(new ElevatorCloseClawCommand());
-		operator.getLeftBumper().whenPressed(new ElevatorOpenClawCommand());
-		operator.getXButton().whenPressed(new ElevatorBottomCommand());
-		operator.getAButton().whenPressed(new ElevatorLowCommand());
-		operator.getBButton().whenPressed(new ElevatorMiddleCommand());
-		operator.getYButton().whenPressed(new ElevatorTopCommand());
+		operator.getRightBumper().whileHeld(new ElevatorOuttakeCommand());
+		operator.getXButton().whenPressed(new ElevatorBottomSequence());
+		operator.getAButton().whenPressed(new ElevatorSwitchSequence());
+		operator.getYButton().whenPressed(new ElevatorScaleSequence());
 		
 		// climb commands
 		operator.getNorth().whileHeld(new ClimberDeployCommand());
@@ -73,7 +71,7 @@ public class OI {
 
 		@Override
 		public boolean get() {
-			return j.getRightX() < -0.5;
+			return j.getRightX() < -0.8;
 		}
 
 	}
@@ -88,7 +86,7 @@ public class OI {
 
 		@Override
 		public boolean get() {
-			return j.getRightX() > 0.5;
+			return j.getRightX() > 0.8;
 		}
 
 	}
@@ -103,7 +101,7 @@ public class OI {
 
 		@Override
 		public boolean get() {
-			return j.getRightY() > 0.5;
+			return j.getRightY() > 0.8;
 		}
 
 	}
@@ -118,7 +116,7 @@ public class OI {
 		
 		@Override
 		public boolean get() {
-			return j.getRightY() < -0.5;
+			return j.getRightY() < -0.8;
 		}
 
 	}
